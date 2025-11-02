@@ -134,6 +134,32 @@
     </div>
 </section>
 
+<!-- ======================================================= -->
+<!-- ==     V3: CARAVAN PLOT SPOTLIGHT SECTION            == -->
+<!-- ======================================================= -->
+<section class="content-section caravan-spotlight-section">
+    <div class="container">
+        <div class="caravan-spotlight-grid animate-on-scroll">
+            <div class="caravan-spotlight__image">
+                <!-- Βάλε εδώ την εικόνα με το τροχόσπιτο -->
+                <img src="{{ url_for('static', filename='assets/images/caravan-image.webp') }}" alt="A caravan parked on a beautiful plot of land near the sea">
+            </div>
+            <div class="caravan-spotlight__content">
+                <span class="caravan-spotlight__supertitle" data-lang-key="caravan_supertitle"></span>
+                <h2 data-lang-key="caravan_title"></h2>
+                <p data-lang-key="caravan_desc"></p>
+                <ul class="project-highlights">
+                    <li><i class="bi bi-plug-fill"></i> <span data-lang-key="caravan_highlight1"></span></li>
+                    <li><i class="bi bi-tsunami"></i> <span data-lang-key="caravan_highlight2"></span></li>
+                    <li><i class="bi bi-graph-up-arrow"></i> <span data-lang-key="caravan_highlight3"></span></li>
+                </ul>
+                <a href="{{ url_for('property_single_page', property_id='plot-paralia-vrasna-200') }}" class="btn btn-primary" data-lang-key="caravan_cta"></a>
+            </div>
+        </div>
+    </div>
+</section>
+
+
 <!-- ============================================= -->
 <!-- ==         V3: BEFORE/AFTER SECTION        == -->
 <!-- ============================================= -->
