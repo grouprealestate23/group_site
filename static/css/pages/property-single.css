@@ -136,3 +136,45 @@
 .form-buttons .btn-secondary:hover {
     background-color: #63685a;
 }
+
+.contact-agent-widget .form-group input,
+.contact-agent-widget .form-group textarea,
+#proposal-contact-form .form-group input,
+#proposal-contact-form .form-group textarea {
+    width: 100%;
+    min-height: 48px;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-family: var(--font-family);
+    font-size: 1rem;
+    box-sizing: border-box;
+}
+
+/* --- 2. Ειδικό Στυλ για το Layout του Τηλεφώνου --- */
+/* Το .iti είναι ο wrapper που φτιάχνει η βιβλιοθήκη */
+.iti {
+    display: flex; /* Τα βάζει σε σειρά */
+    gap: 8px;      /* Δημιουργεί κενό ανάμεσά τους */
+    width: 100%;
+    /* ΣΗΜΑΝΤΙΚΟ: Αφαιρούμε το border από τον wrapper για να μην φαίνεται διπλό */
+    border: none;
+    padding: 0;
+}
+
+/* Το input του τηλεφώνου πιάνει τον υπόλοιπο χώρο */
+.iti__tel-input {
+    flex-grow: 1;
+    width: 100%;
+}
+.iti input[type="tel"] {
+
+    flex-grow: 1;
+
+
+    width: auto;
+}
+#proposal-contact-form .iti input[type="tel"] {
+    flex-grow: 1;
+    width: auto;
+}

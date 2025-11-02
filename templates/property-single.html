@@ -155,20 +155,17 @@
     <div class="modal-content">
         <button class="modal-close" aria-label="Close">&times;</button>
         <h3 data-lang-key="submit_offer_title"></h3>
+        <p class="offer-recap">Your Offer: <strong id="recap-price"></strong></p>
         <form id="proposal-contact-form" action="/propose_price" method="post">
             <input type="hidden" name="property_id" value="{{ prop.id }}">
             <input type="hidden" name="property_title" value="{{ prop.title_key }}">
             <input type="hidden" id="hidden-proposed-price" name="proposed_price" value="">
-            
+            <div class="form-group"><input type="text" name="name" required data-lang-placeholder="placeholder_name"></div>
+            <div class="form-group"><input type="email" name="email" required data-lang-placeholder="placeholder_email"></div>
             <div class="form-group">
-                <input type="text" name="name" required data-lang-placeholder="placeholder_name">
+                <input id="proposal-phone-input" type="tel" required>
             </div>
-            <div class="form-group">
-                <input type="email" name="email" required data-lang-placeholder="placeholder_email">
-            </div>
-            <div class="form-group">
-                <input id="proposal-phone-input" type="tel" name="phone_full_proposal" required>
-            </div>
+            <div class="form-group"><textarea name="message" rows="4" data-lang-placeholder="placeholder_message"></textarea></div>
             <button type="submit" class="btn btn-primary" data-lang-key="submit_offer_btn"></button>
         </form>
     </div>
