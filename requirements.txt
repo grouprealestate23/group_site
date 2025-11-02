@@ -1,5 +1,5 @@
 Flask
 gunicorn
 google-generativeai
-SQLAlchemy
+Flask-SQLAlchemy 
 psycopg2-binary

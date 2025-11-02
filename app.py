@@ -3,13 +3,25 @@ from flask import Flask, render_template, request, jsonify, redirect
 import json
 import os # Προσθέτουμε το os για τις μεταβλητές περιβάλλοντος
 import google.generativeai as genai # Προσθέτουμε τη βιβλιοθήκη του Gemini
-import sqlite3
-from datetime import datetime 
+from flask_sqlalchemy import SQLAlchemy 
 import smtplib
 import ssl
 from email.message import EmailMessage
 
 app = Flask(__name__)
+
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL') or 'sqlite:///database.db'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+db = SQLAlchemy(app) # <-- Αρχικοποίηση της βάσης
+
+# --- ΝΕΟ: Μοντέλο Βάσης (Αντικαθιστά το schema.sql) ---
+class Conversation(db.Model):
+    __tablename__ = 'conversations' # Το όνομα του πίνακα
+    id = db.Column(db.Integer, primary_key=True)
+    timestamp = db.Column(db.String, nullable=False)
+    user_question = db.Column(db.String, nullable=False)
+    bot_answer = db.Column(db.String, nullable=False)
+    session_id = db.Column(db.String, nullable=True)
 
 # --- Ρύθμιση του Gemini API ---
 GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY")
@@ -78,24 +90,38 @@ def ask_chatbot():
 
     # -- ΑΠΟΘΗΚΕΥΣΗ ΣΤΗ ΒΑΣΗ ΔΕΔΟΜΕΝΩΝ --
     try:
-        conn = get_db_connection()
-        cur = conn.cursor()
-        cur.execute(
-            "INSERT INTO conversations (timestamp, user_question, bot_answer) VALUES (?, ?, ?)",
-            (datetime.now().strftime("%Y-%m-%d %H:%M:%S"), user_message, bot_reply)
+   #     conn = get_db_connection()
+    #    cur = conn.cursor()
+     #   cur.execute(
+      #      "INSERT INTO conversations (timestamp, user_question, bot_answer) VALUES (?, ?, ?)",
+       #     (datetime.now().strftime("%Y-%m-%d %H:%M:%S"), user_message, bot_reply)
+       # )
+       # conn.commit()
+       # conn.close()
+
+        new_convo = Conversation(
+            timestamp=datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+            user_question=user_message,
+            bot_answer=bot_reply
         )
-        conn.commit()
-        conn.close()
+        db.session.add(new_convo)
+        db.session.commit()
+
+    except Exception as e:
+        db.session.rollback() # Κάνουμε rollback σε περίπτωση σφάλματος
+        print(f"Error logging to database: {e}")
+
+
     except Exception as e:
         print(f"Error logging to database: {e}")
 
     return jsonify({'reply': bot_reply})
     
 # --- Βοηθητική Συνάρτηση για σύνδεση στη βάση ---
-def get_db_connection():
-    conn = sqlite3.connect('database.db')
-    conn.row_factory = sqlite3.Row
-    return conn
+#def get_db_connection():
+ #   conn = sqlite3.connect('database.db')
+  #  conn.row_factory = sqlite3.Row
+   # return conn
 
 # --- Βοηθητική Συνάρτηση για τη φόρτωση των ακινήτων ---
 def load_properties():
