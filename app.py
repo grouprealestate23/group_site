@@ -6,6 +6,7 @@ import google.generativeai as genai # Προσθέτουμε τη βιβλιοθ
 from flask_sqlalchemy import SQLAlchemy 
 import smtplib
 import ssl
+from datetime import datetime
 from email.message import EmailMessage
 
 app = Flask(__name__)
