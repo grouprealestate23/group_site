@@ -1,0 +1,140 @@
+/* ============================================= */
+/* ==         Footer Styles (v2.0)            == */
+/* ============================================= */
+
+.main-footer {
+    background-color: var(--dark-text);
+    color: #a9b3c1; 
+    padding-top: 80px;
+    font-size: 0.95rem;
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 40px;
+    padding-bottom: 40px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.footer-column .footer-logo-link {
+    display: inline-block; /* Για να λειτουργεί το padding/background */
+    background-color: var(--white);
+    padding: 10px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    transition: transform 0.3s ease;
+}
+.footer-column .footer-logo-link:hover {
+    transform: scale(1.05);
+}
+.footer-column .footer-logo {
+    height: 60px;
+    width: auto;
+    display: block;
+}
+
+.footer-column h4 {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+    color: var(--white); /* Πιο έντονος τίτλος */
+    font-weight: 600;
+}
+
+.footer-column p,
+.footer-column li {
+    margin-bottom: 12px;
+}
+
+.footer-column ul {
+    list-style: none;
+    padding: 0;
+}
+
+/* ΑΝΑΝΕΩΜΕΝΟ: Hover effect στους συνδέσμους */
+.footer-column a {
+    color: #a9b3c1;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+.footer-column a:hover {
+    color: red; /* Το κίτρινο χρώμα στο hover */
+}
+
+/* Στυλ για τα εικονίδια επαφής */
+.footer-column .contact p {
+    display: flex;
+    align-items: center;
+}
+.footer-column .contact i {
+    margin-right: 10px;
+    color: var(--accent-color);
+}
+
+/* --- Κάτω Μέρος του Footer --- */
+.footer-bottom {
+    padding: 25px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.9rem;
+    color: #8a99aa;
+}
+
+.social-icons {
+    display: flex;
+    gap: 20px;
+}
+
+.social-icons a {
+    font-size: 1.3rem;
+    color: #a9b3c1;
+}
+.social-icons a:hover {
+    color: var(--white);
+}
+
+
+.newsletter-form {
+    display: flex;
+    margin-top: 10px;
+}
+
+.newsletter-form input {
+    flex-grow: 1; /* Το input παίρνει όλο τον διαθέσιμο χώρο */
+    border: 1px solid #ddd;
+    border-right: none; /* Αφαιρούμε το δεξί border για να ενωθεί με το κουμπί */
+    padding: 12px;
+    border-radius: 8px 0 0 8px; /* Στρογγυλεμένες γωνίες μόνο αριστερά */
+    font-family: var(--font-family);
+    font-size: 1rem;
+    outline: none;
+    min-width: 0; /* Διόρθωση για flexbox bug */
+}
+
+/* Ο κανόνας για το κουμπί */
+.newsletter-form button {
+    flex-shrink: 0; /* Η ΟΡΙΣΤΙΚΗ ΔΙΟΡΘΩΣΗ: Αποτρέπει το κουμπί από το να "στριμωχτεί" */
+    border-radius: 0 8px 8px 0; /* Στρογγυλεμένες γωνίες μόνο δεξιά */
+    white-space: nowrap; /* Διασφαλίζει ότι το κείμενο μένει σε μία γραμμή */
+    padding: 0 20px;
+}
+
+/* ============================================= */
+/* ==          Footer (Mobile Styles)         == */
+/* ============================================= */
+@media (max-width: 768px) {
+    .footer-grid {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+    .footer-column .contact p {
+        justify-content: center; /* Κεντράρισμα στοιχείων επαφής */
+    }
+
+    .footer-bottom {
+        flex-direction: column;
+        gap: 20px;
+    }
+}
+

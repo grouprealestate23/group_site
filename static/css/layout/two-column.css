@@ -1,0 +1,60 @@
+/* css/layout/two-column.css */
+
+.choose-us-section {
+    background-color: var(--background-grey);
+}
+
+.choose-us-grid {
+    display: grid;
+    grid-template-columns: 1fr; /* Μία στήλη για κινητά (mobile-first) */
+    gap: 40px;
+    align-items: center;
+}
+
+.choose-us-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 12px;
+    object-fit: cover;
+    max-height: 500px;
+}
+
+.choose-us-content h2 {
+    font-size: 2.5rem;
+    color: var(--primary-color);
+    margin-bottom: 20px;
+}
+
+.choose-us-content p {
+    color: #555;
+    margin-bottom: 30px;
+    line-height: 1.8;
+}
+
+.choose-us-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.choose-us-list li {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 15px;
+    font-weight: 500;
+    color: var(--dark-text);
+}
+
+.choose-us-list svg {
+    color: var(--primary-color);
+    flex-shrink: 0; /* Αποτρέπει το SVG από το να συρρικνωθεί */
+}
+
+/* Όταν η οθόνη είναι για desktop, αλλάζουμε σε δύο στήλες */
+@media (min-width: 992px) {
+    .choose-us-grid {
+        grid-template-columns: 1fr 1fr; /* Δύο ίσες στήλες */
+        gap: 60px;
+    }
+}

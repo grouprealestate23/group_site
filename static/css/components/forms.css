@@ -1,0 +1,23 @@
+/* ============================================= */
+/* ==              Form Styles                == */
+/* ==      Newsletter, Contact Form, etc.     == */
+/* ============================================= */
+
+.newsletter-form {
+    display: flex;
+    margin-top: 10px;
+    border-radius: 6px;
+    overflow: hidden; /* Για να εφαρμόζεται το border-radius και στα παιδιά */
+}
+
+.newsletter-form input {
+    flex-grow: 1;
+    border: none;
+    padding: 12px;
+    font-family: var(--font-family);
+    font-size: 1rem;
+}
+
+.newsletter-form input:focus {
+    outline: 2px solid var(--accent-color);
+}

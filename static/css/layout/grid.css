@@ -1,0 +1,83 @@
+/* ============================================= */
+/* ==         Layout & Grid Styles            == */
+/* ==  .container, sections, page headers     == */
+/* ============================================= */
+
+.container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.content-section {
+    background-color: var(--white); /* Κάνουμε την ενότητα λευκή */
+    margin: 40px auto; /* Προσθέτουμε κενό πάνω/κάτω και την κεντράρουμε */
+    padding: 60px 40px; /* Εσωτερικό κενό */
+    border-radius: 30px; /* Στρογγυλεμένες γωνίες με σταθερή τιμή */
+    /* border-radius: 5%; */ /* Η δική σου πρόταση - μπορεί να δώσει πολύ μεγάλες καμπύλες */
+    max-width: 1400px; /* Μέγιστο πλάτος για τις ενότητες */
+    box-shadow: 0 10px 40px rgba(0,0,0,0.08); /* Διακριτική σκιά */
+}
+
+
+.section-header {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.section-header h2 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+    color: var(--primary-color);
+}
+
+.section-header p {
+    font-size: 1.1rem;
+    color: #666;
+}
+
+/* --- Page Header (για εσωτερικές σελίδες) --- */
+.page-header {
+    background-color: var(--background-grey);
+    padding: 60px 0;
+    text-align: center;
+}
+
+.page-header h1 {
+    color: var(--primary-color);
+    font-size: 2.8rem;
+}
+
+.page-header p {
+    font-size: 1.1rem;
+    color: #666;
+    margin-top: 10px;
+}
+
+/* --- Γενικοί κανόνες για Grids --- */
+/* Σημείωση: Τα στυλ για τα carousels σε mobile θα μπουν στο home.css */
+.properties-grid,
+.amenities-grid,
+.services-grid {
+    display: grid;
+    gap: 30px;
+}
+
+.properties-grid {
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+}
+
+.amenities-grid,
+.services-grid {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    text-align: center;
+}
+
+
+@media (max-width: 768px) {
+    .content-section {
+        margin: 20px 10px;
+        padding: 40px 20px;
+        border-radius: 20px;
+    }
+}

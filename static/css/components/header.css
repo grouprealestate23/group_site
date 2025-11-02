@@ -1,0 +1,157 @@
+/* ============================================= */
+/* ==         Header Styles (v2.0)            == */
+/* ============================================= */
+
+/* --- Κύριο Container του Header --- */
+.main-header {
+    background-color: var(--white);
+    /* ΝΕΟ: Πιο ψηλό header */
+    height: 120px; 
+    display: flex;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    border-bottom: 1px solid #f0f0f0; /* Πιο διακριτικό border */
+    transition: height 0.3s ease; /* Ομαλή μετάβαση ύψους για mobile */
+}
+
+.main-header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+/* --- ΝΕΟ: Μεγαλύτερο λογότυπο που "ξεχειλίζει" --- */
+.main-header .logo {
+    position: relative;
+    z-index: 1001;
+}
+.main-header .logo img {
+    height: 160px; /* Μεγάλο μέγεθος */
+    width: auto;
+    display: block;
+    object-fit: contain;
+    transition: height 0.3s ease;
+}
+
+/* --- ΑΝΑΝΕΩΜΕΝΟ: Στυλ Μενού Πλοήγησης --- */
+.main-nav {
+    flex-grow: 1;
+}
+.main-nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 40px; /* Λίγο μεγαλύτερο κενό */
+}
+.main-nav a {
+    text-decoration: none;
+    color: var(--dark-text);
+    font-weight: 600; /* Πιο έντονο */
+    position: relative;
+    padding: 10px 0;
+    transition: color 0.3s ease;
+}
+.main-nav a:hover,
+.main-nav a.active {
+    color: var(--primary-color); /* Το κόκκινο χρώμα που θέλουμε */
+}
+/* Η κόκκινη γραμμή από κάτω για το ενεργό link */
+.main-nav a.active::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: var(--primary-color);
+}
+
+/* --- Δεξιά Στοιχεία Ελέγχου --- */
+.header-controls {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+/* --- Language Switcher --- */
+.language-switcher {
+    position: relative;
+}
+/* ΝΕΟ: Εμφάνιση dropdown με HOVER (για Desktop) */
+/* Σημείωση: Η λειτουργία με click από το JS παραμένει για τα κινητά */
+.language-switcher:hover .lang-dropdown {
+    display: flex;
+    opacity: 1;
+    transform: translateY(0);
+}
+/* ... (τα υπόλοιπα στυλ του language switcher παραμένουν ίδια) ... */
+.current-lang { background: transparent; border: 1px solid #ddd; border-radius: 6px; padding: 8px 12px; display: flex; align-items: center; cursor: pointer; font-family: var(--font-family); font-weight: 500; }
+.current-lang img { width: 20px; height: auto; margin-right: 8px; border-radius: 2px; }
+.lang-dropdown { position: absolute; top: 100%; right: 0; background: var(--white); border: 1px solid #eee; border-radius: 8px; box-shadow: 0 8px 20px rgba(0,0,0,0.1); width: 160px; overflow: hidden; display: none; flex-direction: column; opacity: 0; transform: translateY(10px); transition: opacity 0.2s ease, transform 0.2s ease; z-index: 1001; }
+.language-switcher.is-open .lang-dropdown { display: flex; opacity: 1; transform: translateY(0); }
+.lang-dropdown a { display: flex; align-items: center; padding: 12px 15px; text-decoration: none; color: var(--dark-text); font-size: 0.9rem; }
+.lang-dropdown a:hover { background-color: var(--background-grey); }
+.lang-dropdown a img { width: 20px; margin-right: 10px; border-radius: 2px; }
+
+
+/* ============================================= */
+/* ==         Header (Mobile Styles)          == */
+/* ============================================= */
+/* css/components/header.css */
+
+@media (max-width: 992px) {
+    /* Προσαρμογή header για κινητά */
+    .main-header {
+        height: 80px;
+    }
+    .main-header .logo img {
+        height: 100px;
+    }
+
+    /* 1. Εμφανίζουμε το hamburger button και το τοποθετούμε πάνω απ' όλα */
+    .mobile-menu-toggle {
+        display: block;
+        position: relative; /* Απαραίτητο για το z-index */
+        z-index: 1001;     /* Υψηλότερο z-index από το μενού (1000) */
+    }
+    .mobile-menu-toggle span {
+        background-color: var(--primary-color); /* Το κάνουμε κόκκινο */
+    }
+
+    /* 2. Κρύβουμε τα στοιχεία του desktop */
+    .main-nav { display: none !important; }
+    .main-nav ul { display: none; }
+    .btn-contact-header { display: none; }
+
+    /* 3. Animation για το hamburger button όταν είναι ενεργό (γίνεται "X") */
+    .mobile-menu-toggle.is-active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+    .mobile-menu-toggle.is-active span:nth-child(2) { opacity: 0; }
+    .mobile-menu-toggle.is-active span:nth-child(3) { transform: rotate(-45deg) translate(7px, -6px); }
+
+    /* 4. Στυλ για το slide-out μενού όταν ανοίγει */
+    .main-nav.is-open {
+        display: flex !important;
+        position: fixed; top: 0; right: 0;
+        width: 250px; max-width: 80%; height: 100vh;
+        background: var(--white);
+        flex-direction: column; align-items: center;
+        padding-top: 100px;
+        box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+        z-index: 1000; /* Το μενού είναι κάτω από το κουμπί */
+    }
+    
+    .main-nav.is-open ul {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        gap: 0;
+    }
+    
+    .main-nav.is-open li { width: 100%; text-align: center; }
+    .main-nav.is-open a { display: block; padding: 20px; font-size: 1.2rem; width: 100%; }
+}

@@ -1,0 +1,269 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<!-- ============================================= -->
+<!-- ==        V3: HERO SECTION (HYBRID)        == -->
+<!-- ============================================= -->
+<section class="hero-v3">
+    <div class="showcase-background-slider">
+        <img class="showcase-media-item is-active" src="{{ url_for('static', filename='assets/images/Εικόνες για Slider/ekso1.webp') }}" alt="Kerdylia Riviera View 1">
+        <img class="showcase-media-item" src="{{ url_for('static', filename='assets/images/Εικόνες για Slider/mezonetes.webp') }}" alt="Kerdylia Riviera View 3">
+        <img class="showcase-media-item" src="{{ url_for('static', filename='assets/images/Εικόνες για Slider/διαμερισμα2.webp') }}" alt="Kerdylia Riviera View 4">
+        <video class="showcase-media-item" src="{{ url_for('static', filename='assets/videos/video1.webm') }}" muted playsinline loop preload="auto"></video>
+        <video class="showcase-media-item" src="{{ url_for('static', filename='assets/videos/video2.webm') }}" muted playsinline loop preload="auto"></video>
+    </div>
+    <div class="hero-v3-overlay"></div>
+    <div class="container hero-v3-content">
+        <h1 class="animate-on-scroll" data-lang-key="hero_v3_title"></h1>
+        <p class="animate-on-scroll" data-lang-key="hero_v3_subtitle"></p>
+        <div class="hero-v3-cta animate-on-scroll">
+            <a href="{{ url_for('project_kerdylia_page') }}" class="btn btn-primary" data-lang-key="hero_v3_cta_main"></a>
+            <a href="{{ url_for('listings_page') }}" class="btn btn-secondary" data-lang-key="hero_v3_cta_secondary"></a>
+        </div>
+    </div>
+</section>
+
+
+
+
+<!-- ============================================= -->
+<!-- ==      V3: FLAGSHIP PROJECT - KERDYLIA    == -->
+<!-- ============================================= -->
+<section class="content-section">
+    <div class="container">
+        <div class="flagship-project animate-on-scroll">
+            <div class="flagship-project__image-wrapper">
+                <a href="{{ url_for('project_kerdylia_page') }}">
+                    <img src="{{ url_for('static', filename='assets/images/Project_kerdylia/monokatoikies.webp') }}" alt="Kerdylia Riviera Project">
+                </a>
+            </div>
+            <div class="flagship-project__content">
+                <span class="flagship-project__supertitle" data-lang-key="spotlight_supertitle"></span>
+                <h2 data-lang-key="spotlight_title"></h2>
+                <p data-lang-key="spotlight_desc"></p>
+                <ul class="project-highlights">
+                    <li><i class="bi bi-tsunami"></i> <span data-lang-key="spotlight_highlight2"></span></li>
+                    <li><i class="bi bi-house-heart"></i> <span data-lang-key="spotlight_highlight1"></span></li>
+                </ul>
+                <a href="{{ url_for('project_kerdylia_page') }}" class="btn btn-primary" data-lang-key="spotlight_cta"></a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ============================================= -->
+<!-- ==      V3: FLAGSHIP PROJECT - THE TWINS   == -->
+<!-- ============================================= -->
+<section class="content-section">
+    <div class="container">
+        {% if twins_project %}
+        <div class="flagship-project animate-on-scroll reverse">
+            <div class="flagship-project__image-wrapper">
+                <a href="{{ url_for('property_single_page', property_id=twins_project.id) }}">
+                    <img src="{{ url_for('static', filename=twins_project.main_image) }}" alt="Photo of {{ twins_project.title_key }}">
+                </a>
+            </div>
+            <div class="flagship-project__content">
+                <span class="flagship-project__supertitle" data-lang-key="nav_project_the_twins"></span>
+                <h2 data-lang-key="{{ twins_project.title_key }}"></h2>
+                <p data-lang-key="{{ twins_project.description_key }}"></p>
+                <ul class="flagship-project__stats">
+                    <li><i class="bi bi-aspect-ratio"></i> {{ twins_project.area }} τ.μ.</li>
+                    <li><i class="bi bi-door-open"></i> {{ twins_project.bedrooms }} Υ/Δ</li>
+                    <li><i class="bi bi-geo-alt"></i> {{ twins_project.location }}</li>
+                </ul>
+                <a href="{{ url_for('property_single_page', property_id=twins_project.id) }}" class="btn btn-primary" data-lang-key="learn_more_btn"></a>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</section>
+
+<!-- ============================================= -->
+<!-- ==     V3: SOME OF OUR LISTINGS SECTION    == -->
+<!-- ============================================= -->
+<section class="content-section">
+    <div class="container">
+        <div class="section-header-flex animate-on-scroll">
+            <div>
+                <h2 data-lang-key="some_listings_title"></h2>
+                <p data-lang-key="some_listings_subtitle"></p>
+            </div>
+            <a href="{{ url_for('listings_page') }}" class="btn btn-primary" data-lang-key="some_listings_cta"></a>
+        </div>
+
+        <div class="properties-grid">
+            {% if sample_listings %}
+                {% for prop in sample_listings %}
+                    <div class="property-card animate-on-scroll">
+                        <div class="property-card-image" data-images='{{ prop.images|tojson }}'>
+                            <a href="{{ url_for('property_single_page', property_id=prop.id) }}">
+                            <img src="{{ url_for('static', filename=prop.main_image) }}" alt="Photo of {{ prop.title_key }}" class="property-card-main-image">
+                            {% if prop.images|length > 1 %}
+                            <div class="card-carousel-controls">
+                                <button class="card-carousel-button prev-button" aria-label="Previous Image"><i class="bi bi-chevron-left"></i></button>
+                                <button class="card-carousel-button next-button" aria-label="Next Image"><i class="bi bi-chevron-right"></i></button>
+                            </div>
+                            {% endif %}
+                            </a>
+                            <div class="property-card-status" data-lang-key="type_{{ prop.type }}"></div>
+                        </div>
+                        <div class="property-card-body">
+                            <h3 data-lang-key="{{ prop.title_key }}"></h3>
+                            <p class="location">{{ prop.location }}</p>
+                            <p class="price">
+                                {% if prop.price > 0 %}
+                                    €{{ prop.price|formatprice }}
+                                {% else %}
+                                    <span data-lang-key="price_on_request"></span>
+                                {% endif %}
+                            </p>
+                            <div class="stats">
+                                <span><i class="bi bi-aspect-ratio"></i> {{ prop.area }} m²</span>
+                                {% if prop.bedrooms > 0 %}
+                                    <span><i class="bi bi-door-open"></i> {{ prop.bedrooms }} <span data-lang-key="card_bedrooms"></span></span>
+                                {% endif %}
+                            </div>
+                            <a href="{{ url_for('property_single_page', property_id=prop.id) }}" class="btn btn-primary" data-lang-key="more_details_btn"></a>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% endif %}
+        </div>
+    </div>
+</section>
+
+<!-- ============================================= -->
+<!-- ==         V3: BEFORE/AFTER SECTION        == -->
+<!-- ============================================= -->
+<section class="content-section before-after-section">
+    <div class="container">
+        <div class="section-header animate-on-scroll">
+            <h2 data-lang-key="before_after_title"></h2>
+            <p data-lang-key="before_after_subtitle"></p>
+        </div>
+        <div id="comparison">
+            <figure>
+                <div id="divisor"></div>
+            </figure>
+            <input type="range" min="0" max="100" value="50" id="slider" oninput="moveDivisor()">
+        </div>
+    </div>
+</section>
+
+<!-- ============================================= -->
+<!-- ==           V3: TRUST SECTION           == -->
+<!-- ============================================= -->
+<section class="content-section">
+    <div class="container">
+        <div class="trust-grid">
+            <div class="trust-features animate-on-scroll">
+                <div class="section-header" style="text-align: left; margin-bottom: 40px;">
+                    <h2 data-lang-key="trust_title"></h2>
+                    <p data-lang-key="trust_subtitle"></p>
+                </div>
+                <ul class="trust-features__list">
+                    <li>
+                        <i class="bi bi-award"></i>
+                        <div>
+                            <h4 data-lang-key="feature3_title"></h4>
+                            <p data-lang-key="feature3_desc"></p>
+                        </div>
+                    </li>
+                    <li>
+                        <i class="bi bi-shield-check"></i>
+                        <div>
+                            <h4 data-lang-key="feature6_title"></h4>
+                            <p data-lang-key="feature6_desc"></p>
+                        </div>
+                    </li>
+                    <li>
+                        <i class="bi bi-people"></i>
+                        <div>
+                            <h4 data-lang-key="feature8_title"></h4>
+                            <p data-lang-key="feature8_desc"></p>
+                        </div>
+                    </li>
+                </ul>
+                 <a href="/about" class="btn btn-primary" style="margin-top: 20px;" data-lang-key="trust_cta_about"></a>
+            </div>
+            <div class="trust-image animate-on-scroll">
+                <img src="{{ url_for('static', filename='assets/images/indexphoto2.webp') }}" alt="A happy couple having received the keys to their new home">
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+<!-- ============================================= -->
+<!-- ==             V3: FAQ SECTION             == -->
+<!-- ============================================= -->
+<section id="faq-section" class="content-section faq-section">
+    <div class="container">
+        <div class="faq-container">
+            <div class="faq-intro animate-on-scroll">
+                <h2 class="faq-intro-title" data-lang-key="faq_title"></h2>
+                <p data-lang-key="faq_intro_text"></p>
+                <div class="see-all-faqs-container animate-on-scroll" style="text-align: center; margin-top: 30px;">
+                    <a href="{{ url_for('about_page') }}#faq-section" class="btn btn-primary" data-lang-key="see_all_faqs_btn"></a>
+                </div>
+            </div>
+            <div class="faq-accordion animate-on-scroll">
+                {% for i in range(1, 5) %}
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span data-lang-key="faq{{i}}_question"></span>
+                        <span class="faq-icon"></span>
+                    </button>
+                    <div class="faq-answer">
+                        <p data-lang-key="faq{{i}}_answer"></p>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ============================================= -->
+<!-- ==         V3: TESTIMONIALS SECTION        == -->
+<!-- ============================================= -->
+<section class="content-section testimonials-section">
+    <div class="container">
+        <div class="section-header animate-on-scroll">
+            <h2 data-lang-key="testimonials_title"></h2>
+        </div>
+        <div class="review-cta-container animate-on-scroll">
+            <a href="https://www.google.com/maps/search/?api=1&query=Google&query_place_id=ChIJndTo70wfqRQRs09TrFzN_PA" target="_blank" class="btn btn-primary" data-lang-key="make_a_review_btn"></a>
+        </div>
+        <div class="testimonials-grid">
+            <div class="testimonial-card animate-on-scroll">
+                <div class="testimonial-rating">★★★★★</div>
+                <p class="testimonial-text" data-lang-key="testimonial1_text"></p>
+                <p class="testimonial-author" data-lang-key="testimonial1_author"></p>
+            </div>
+            <div class="testimonial-card animate-on-scroll">
+                <div class="testimonial-rating">★★★★★</div>
+                <p class="testimonial-text" data-lang-key="testimonial2_text"></p>
+                <p class="testimonial-author" data-lang-key="testimonial2_author"></p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ============================================= -->
+<!-- ==         V3: FINAL CTA SECTION         == -->
+<!-- ============================================= -->
+<section class="final-cta-section">
+    <div class="container">
+        <h2 data-lang-key="final_cta_title"></h2>
+        <p data-lang-key="final_cta_subtitle"></p>
+        <a href="/contact" class="btn btn-primary" data-lang-key="final_cta_button"></a>
+    </div>
+</section>
+
+<script src="{{ url_for('static', filename='js/before-after-slider.js') }}"></script>
+
+{% endblock %}

@@ -1,0 +1,95 @@
+/* css/components/faq.css (FINAL - Rebuilt Version) */
+
+.faq-section { background-color: var(--white); }
+.faq-container { display: grid; grid-template-columns: 1fr; gap: 40px; align-items: flex-start; }
+.faq-intro h2 { font-size: 3rem; font-weight: 700; color: var(--primary-color); margin-bottom: 20px; }
+.faq-intro p { font-size: 1.1rem; line-height: 1.8; color: #666; }
+
+/* Το εξωτερικό πλαίσιο του accordion */
+.faq-accordion {
+    width: 100%;
+    border-radius: 12px;
+    box-shadow: 0 5px 30px rgba(0, 0, 0, 0.07);
+    border: 1px solid #eaf0f4;
+    overflow: hidden;
+}
+
+.faq-item { border-bottom: 1px solid #eaf0f4; }
+.faq-item:last-child { border-bottom: none; }
+
+.faq-question {
+    width: 100%;
+    background: var(--white);
+    border: none;
+    text-align: left;
+    padding: 20px 25px;
+    font-size: 1.1rem;
+    font-weight: 700; /* Bold ερώτηση */
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    color: var(--dark-text);
+    transition: background-color 0.2s ease;
+}
+
+.faq-question:hover { background-color: #f9f9f9; }
+
+/* --- Η ΝΕΑ ΛΟΓΙΚΗ ΓΙΑ ΤΟ ΕΙΚΟΝΙΔΙΟ +/- ΜΕ CSS --- */
+.faq-icon {
+    position: relative;
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+}
+/* Δημιουργούμε τις 2 γραμμές του "+" με ψευδο-στοιχεία */
+.faq-icon::before,
+.faq-icon::after {
+    content: '';
+    position: absolute;
+    background-color: var(--primary-color);
+    transition: transform 0.3s ease-out;
+}
+/* Οριζόντια γραμμή */
+.faq-icon::before {
+    top: 50%;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    margin-top: -1px;
+}
+/* Κάθετη γραμμή */
+.faq-icon::after {
+    top: 0;
+    left: 50%;
+    width: 2px;
+    height: 100%;
+    margin-left: -1px;
+}
+/* Όταν είναι ανοιχτό, η κάθετη γραμμή εξαφανίζεται (περιστρέφεται και γίνεται αόρατη) */
+.faq-question.active .faq-icon::after {
+    transform: rotate(90deg);
+    opacity: 0;
+}
+/* Όταν είναι ανοιχτό, το κείμενο της ερώτησης γίνεται κόκκινο */
+.faq-question.active {
+    color: var(--primary-color);
+}
+/* ------------------------------------------------ */
+
+.faq-answer {
+    overflow: hidden;
+    max-height: 0; /* Ξεκινάει κλειστό */
+    transition: max-height 0.4s ease-out, padding 0.4s ease-out;
+}
+.faq-answer p {
+    color: #555;
+    line-height: 1.8;
+    padding: 0 25px 25px 25px;
+}
+
+@media (min-width: 992px) {
+    .faq-container { grid-template-columns: 1fr 2fr; gap: 60px; }
+    .faq-intro { position: sticky; top: 150px; align-self: flex-start; }
+}

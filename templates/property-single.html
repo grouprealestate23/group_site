@@ -1,0 +1,205 @@
+{% extends "layout.html" %}
+
+{% block extra_head %}
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+{% endblock %}
+
+{% block content %}
+    <section class="page-header">
+        <div class="container">
+            <h1 data-lang-key="{{ prop.title_key }}"></h1>
+            <p>{{ prop.location }}</p>
+        </div>
+    </section>
+
+    <section class="content-section property-single-section">
+        <div class="container">
+            <div class="property-single-grid">
+                <div class="property-main-content">
+                    <div class="property-gallery">
+                        <div class="carousel-container" data-images='{{ prop.images|tojson }}'>
+                            <img src="" alt="" class="carousel-main-image">
+
+                            {% if prop.images|length > 1 %}
+                                <button class="carousel-button prev-button"><i class="bi bi-chevron-left"></i></button>
+                                <button class="carousel-button next-button"><i class="bi bi-chevron-right"></i></button>
+                            {% endif %}
+
+                            <button class="fullscreen-button" aria-label="View fullscreen">
+                                <i class="bi bi-arrows-fullscreen"></i>
+                            </button>
+
+                            <div class="carousel-thumbnails"></div>
+                        </div>
+                    </div>
+                    
+                    <h3 data-lang-key="property_description_title"></h3>
+                    <p class="property-description" data-lang-key="{{ prop.description_key }}"></p>
+                </div>
+
+                <aside class="property-sidebar">
+
+                    <div class="sidebar-widget">
+                        <p class="price">
+                            {% if prop.price > 0 %}
+                                €{{ prop.price|formatprice }}
+                            {% else %}
+                                <span data-lang-key="price_on_request"></span>
+                            {% endif %}
+                        </p>
+                        <ul class="property-stats-list">
+                            <li>
+                                <strong><span data-lang-key="prop_code_label"></span>:</strong> 
+                                <span> {{ prop.id }}</span>
+                            </li>
+                            <li>
+                                <strong><span data-lang-key="prop_type_label"></span>:</strong> 
+                                <span data-lang-key="{{ prop.type }}"></span>
+                            </li>
+                            <li>
+                                <strong><span data-lang-key="prop_area_label"></span>:</strong> 
+                                <span><i class="bi bi-aspect-ratio"></i> {{ prop.area }} <span data-lang-key="prop_area_unit"></span></span>
+                            </li>
+                            {% if prop.bedrooms > 0 %}
+                            <li>
+                                <strong><span data-lang-key="prop_bedrooms_label"></span>:</strong> 
+                                <span><i class="bi bi-door-open"></i> {{ prop.bedrooms }}</span>
+                            </li>
+                            {% endif %}
+                            {% if prop.bathrooms > 0 %}
+                            <li>
+                                <strong><span data-lang-key="prop_bathrooms_label"></span>:</strong> 
+                                <span><i class="bi bi-badge-wc"></i> {{ prop.bathrooms }}</span>
+                            </li>
+                            {% endif %}
+                        </ul>
+                    </div>
+
+                    <div class="sidebar-widget">
+                        <h4 data-lang-key="prop_features"></h4>
+                        <ul class="features-list">
+                            {% for feature_key in prop.features_keys %}
+                                <li><i class="bi bi-check-circle-fill"></i> <span data-lang-key="{{ feature_key }}"></span></li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+
+                    <div class="sidebar-widget contact-agent-widget">
+                        <h4 data-lang-key="contact_widget_title"></h4>
+                        <form id="property-contact-form" action="/send_message" method="post">
+                            <input type="hidden" name="property_id" value="{{ prop.id }}">
+                            <input type="hidden" name="property_title" value="{{ prop.title_key }}">
+
+                            <div class="form-group">
+                                <input type="text" name="name" required data-lang-placeholder="placeholder_name">
+                            </div>
+                            <div class="form-group">
+                                <input type="email" name="email" required data-lang-placeholder="placeholder_email">
+                            </div>
+                            <div class="form-group">
+                                <input id="phone-input" type="tel" name="phone_full" required>
+                            </div>
+                            <div class="form-group">
+                                <textarea name="message" rows="4" required data-lang-key="property_interest_message" data-property-id="{{ prop.id }}"></textarea>
+                            </div>
+                            <div class="form-buttons">
+                                <button type="submit" class="btn btn-primary" data-lang-key="contact_send_btn"></button>
+                                <button type="button" id="propose-price-btn" class="btn btn-secondary" data-lang-key="propose_price_btn"></button>
+                            </div>
+                        </form>
+                    </div>
+                    {% if map_data %}
+                    <div class="sidebar-widget map-widget">
+                        <h4 data-lang-key="prop_location_title"></h4>
+                        <div class="map-container">
+                            <div id="property-map"></div>
+                        </div>
+                    </div>
+                    {% endif %}
+                </aside>
+            </div>
+        </div>
+    </section>
+
+<div id="lightbox-overlay" class="lightbox-overlay">
+    
+    <button class="lightbox-close" aria-label="Close">&times;</button>
+    <button class="lightbox-prev" aria-label="Previous image"><i class="bi bi-chevron-left"></i></button>
+    <button class="lightbox-next" aria-label="Next image"><i class="bi bi-chevron-right"></i></button>
+    <div class="lightbox-content">
+        <img src="" alt="Fullscreen property image" id="lightbox-image">
+    </div>
+    
+    <div class="lightbox-thumbnails"></div>
+</div>
+
+<div id="price-proposal-modal" class="modal-overlay">
+        <div class="modal-content">
+            <button class="modal-close" aria-label="Close">&times;</button>
+            <h3 data-lang-key="propose_price_title"></h3>
+            <div class="original-price-display">
+                <span data-lang-key="original_price_label"></span>: 
+                <strong id="modal-original-price"></strong> 
+            </div>
+            <p data-lang-key="propose_price_desc_15"></p>
+            <div class="form-group">
+                <input type="number" id="proposal-price-input" placeholder="0" class="price-input">
+                <span class="currency-symbol">€</span>
+            </div>
+            <p id="price-proposal-error" class="error-message"></p>
+            <button id="submit-proposal-btn" class="btn btn-primary" data-lang-key="continue_btn"></button>
+        </div>
+</div>
+
+<div id="proposal-contact-modal" class="modal-overlay">
+    <div class="modal-content">
+        <button class="modal-close" aria-label="Close">&times;</button>
+        <h3 data-lang-key="submit_offer_title"></h3>
+        <form id="proposal-contact-form" action="/propose_price" method="post">
+            <input type="hidden" name="property_id" value="{{ prop.id }}">
+            <input type="hidden" name="property_title" value="{{ prop.title_key }}">
+            <input type="hidden" id="hidden-proposed-price" name="proposed_price" value="">
+            
+            <div class="form-group">
+                <input type="text" name="name" required data-lang-placeholder="placeholder_name">
+            </div>
+            <div class="form-group">
+                <input type="email" name="email" required data-lang-placeholder="placeholder_email">
+            </div>
+            <div class="form-group">
+                <input id="proposal-phone-input" type="tel" name="phone_full_proposal" required>
+            </div>
+            <button type="submit" class="btn btn-primary" data-lang-key="submit_offer_btn"></button>
+        </form>
+    </div>
+</div>
+{% endblock %}
+
+
+{% block extra_scripts %}
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Παίρνουμε τις συντεταγμένες από τον server
+            const lat = {{ prop.lat }};
+            const lon = {{ prop.lon }};
+
+            if (lat && lon) {
+                // Αρχικοποίηση του χάρτη
+                const map = L.map('property-map').setView([lat, lon], 15);
+
+                // Προσθήκη του layer του χάρτη από το OpenStreetMap
+                L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                    attribution: '© OpenStreetMap contributors'
+                }).addTo(map);
+
+                // Προσθήκη ενός marker στην τοποθεσία του ακινήτου
+                L.marker([lat, lon]).addTo(map);
+            }
+        });
+    </script>
+
+    <script src="{{ url_for('static', filename='js/property-form.js') }}" type="module"></script>
+
+{% endblock %}

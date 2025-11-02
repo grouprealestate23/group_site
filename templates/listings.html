@@ -1,0 +1,112 @@
+{% extends "layout.html" %}
+
+{% block extra_head %}
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+{% endblock %}
+
+
+{% block content %}
+    <section class="page-header">
+        <div class="container">
+            <h1 data-lang-key="listings_page_title"></h1>
+        </div>
+    </section>
+
+    <section class="content-section listings-section">
+        <div class="container">
+            <form class="filters-toolbar" method="GET" action="/listings">
+                <div class="filter-select-wrapper">
+                    <select name="location">
+                        <option value="all" {% if current_filters.location == 'all' %}selected{% endif %} data-lang-key="filter_all_locations"></option>
+                        <option value="asprovalta" {% if current_filters.location == 'asprovalta' %}selected{% endif %} data-lang-key="location_asprovalta"></option>
+                        <option value="nea-kerdilia" {% if current_filters.location == 'nea-kerdilia' %}selected{% endif %} data-lang-key="location_nea_kerdilia"></option>
+                        <option value="nea-vrasna" {% if current_filters.location == 'nea-vrasna' %}selected{% endif %} data-lang-key="location_nea_vrasna"></option>
+                        <option value="logkari" {% if current_filters.location == 'logkari' %}selected{% endif %} data-lang-key="location_logkari"></option>
+                    </select>
+                </div>
+                <div class="filter-select-wrapper">
+                    <select name="type">
+                        <option value="all" {% if current_filters.type == 'all' %}selected{% endif %} data-lang-key="filter_all_types"></option>
+                        <option value="maisonette" {% if current_filters.type == 'maisonette' %}selected{% endif %} data-lang-key="type_maisonette"></option>
+                        <option value="apartment" {% if current_filters.type == 'apartment' %}selected{% endif %} data-lang-key="type_apartment"></option>
+                        <option value="plot" {% if current_filters.type == 'plot' %}selected{% endif %} data-lang-key="type_plot"></option> 
+                    </select>
+                </div>
+                <div class="filter-select-wrapper">
+                    <select name="sort">
+                        <option value="" {% if current_filters.sort == '' %}selected{% endif %} data-lang-key="filter_sort_by"></option>
+                        <option value="price_asc" {% if current_filters.sort == 'price_asc' %}selected{% endif %} data-lang-key="sort_price_asc"></option>
+                        <option value="price_desc" {% if current_filters.sort == 'price_desc' %}selected{% endif %} data-lang-key="sort_price_desc"></option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary" data-lang-key="search_button"></button>
+            </form>
+
+            <div class="properties-grid">
+                {% if properties %}
+                    {% for prop in properties %}
+                        <div class="property-card">
+                            <div class="property-card-image" data-images='{{ prop.images|tojson }}'>
+                                <a href="{{ url_for('property_single_page', property_id=prop.id) }}">
+                                <img src="{{ url_for('static', filename=prop.main_image) }}" alt="" class="property-card-main-image">
+                                {% if prop.images|length > 1 %}
+                                <div class="card-carousel-controls">
+                                    <button class="card-carousel-button prev-button" aria-label="Previous Image"><i class="bi bi-chevron-left"></i></button>
+                                    <button class="card-carousel-button next-button" aria-label="Next Image"><i class="bi bi-chevron-right"></i></button>
+                                </div>
+                                {% endif %}
+                                </a>
+                                <div class="property-card-status" data-lang-key="{{ prop.type }}"></div>
+                            </div>
+                            <div class="property-card-body">
+                                <h3 data-lang-key="{{ prop.title_key }}"></h3>
+                                <p class="location">{{ prop.location }}</p>
+                                <p class="price">
+                                    {% if prop.price > 0 %}
+                                        €{{ prop.price|formatprice }}
+                                    {% else %}
+                                        <span data-lang-key="price_on_request"></span>
+                                    {% endif %}
+                                </p>
+                                <div class="stats">
+                                    <span><i class="bi bi-aspect-ratio"></i> {{ prop.area }} m²</span>
+                                    {# *** Η ΑΛΛΑΓΗ ΕΙΝΑΙ ΕΔΩ *** #}
+                                    {% if prop.bedrooms > 0 %}
+                                        <span><i class="bi bi-door-open"></i> {{ prop.bedrooms }} <span data-lang-key="card_bedrooms"></span></span>
+                                    {% endif %}
+                                    {% if prop.bathrooms > 0 %}
+                                        <span><i class="bi bi-badge-wc"></i> {{ prop.bathrooms }} <span data-lang-key="card_bathrooms"></span></span>
+                                    {% endif %}
+                                </div>
+                                <a href="{{ url_for('property_single_page', property_id=prop.id) }}" class="btn btn-primary" data-lang-key="more_details_btn"></a>
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    <p data-lang-key="no_properties_found"></p>
+                {% endif %}
+            </div>
+        </div>
+    </section>
+
+ {% if map_data %}
+    <section class="content-section listings-map-section">
+        <div class="container">
+            <div class="section-header animate-on-scroll">
+                <h2 data-lang-key="map_section_title"></h2>
+            </div>
+            <div id="listings-map"></div>
+        </div>
+    </section>
+{% endif %}
+
+
+{% endblock %}
+
+
+{% block extra_scripts %}
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script>
+        const mapProperties = {{ map_data|tojson }};
+    </script>
+{% endblock %}

@@ -1,0 +1,22 @@
+/* ============================================= */
+/* ==           Reset & Base Styles           == */
+/* ==      Γενικοί κανόνες για όλο το site     == */
+/* ============================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font-family);
+    color: var(--dark-text);
+    background-color: var(--background-grey);
+    line-height: 1.7;
+    padding-top: var(--header-height); /* Για να μην κρύβεται το περιεχόμενο κάτω από το header */
+}

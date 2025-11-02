@@ -1,0 +1,5 @@
+Flask
+gunicorn
+google-generativeai
+SQLAlchemy
+psycopg2-binary

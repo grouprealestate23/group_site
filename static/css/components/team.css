@@ -1,0 +1,40 @@
+/* css/components/team.css */
+.team-section {
+    background-color: var(--background-grey);
+    border-radius: 5%;
+
+}
+
+.team-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+}
+
+.team-card {
+    background: var(--white);
+    border-radius: 12px;
+    overflow: hidden;
+    text-align: center;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+}
+
+.team-card-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.team-card-body {
+    padding: 25px 20px;
+}
+
+.team-card-body h3 {
+    font-size: 1.3rem;
+    margin-bottom: 5px;
+}
+
+.team-card-body p {
+    color: var(--primary-color);
+    font-weight: 500;
+}

@@ -1,0 +1,66 @@
+<footer class="main-footer">
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-column about">
+                <a href="/" class="footer-logo-link">
+                    <img src="{{ url_for('static', filename='assets/images/logo-refined.webp') }}" alt="Group Real Estate Logo" class="footer-logo">
+                </a>
+                <p data-lang-key="footer_about"></p>
+            </div>
+
+            <div class="footer-column links">
+                <h4 data-lang-key="footer_links_title"></h4>
+                <ul>
+                    <li><a href="/about" data-lang-key="nav_about"></a></li>
+                    <li><a href="/listings" data-lang-key="nav_listings"></a></li>
+                    <li><a href="/project-kerdylia" data-lang-key="nav_project_kerdylia"></a></li>
+                    <li><a href="/contact" data-lang-key="nav_contact"></a></li>
+                </ul>
+            </div>
+
+            <div class="footer-column links">
+                <h4 data-lang-key="footer_locations_title"></h4>
+                <ul>
+                    {% for slug, name in sorted_locations %}
+                        <li>
+                            <a href="{{ url_for('listings_page', location=slug) }}">
+                                {{ name }} ({{ location_counts.get(slug, 0) }})
+                            </a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+
+            <div class="footer-column contact">
+                <h4 data-lang-key="footer_contact_title"></h4>
+                <p> <a href="https://www.google.com/maps/search/?api=1&query=Google&query_place_id=ChIJndTo70wfqRQRs09TrFzN_PA" target="_blank"><i class="icon-location"></i> El.Venizelou 40, Nea Vrasna, 57021</a></p>
+                <p><i class="fa-brands fa-whatsapp"></i><a href="tel:+306946193307"><i class="icon-phone"></i> +30 694 619 3307</a></p>
+                <p><a href="mailto:info@grouprealestate.gr"><i class="icon-email"></i> info@grouprealestate.gr</a></p>
+                <br>
+                <p data-lang-key="footer_newsletter_subtitle"></p>
+                <div class="newsletter-form">
+                    <input type="email" data-lang-placeholder="placeholder_email">
+                    <button class="btn btn-primary" data-lang-key="footer_subscribe_btn" style="padding: 0px 20px;  border: none; white-space: nowrap; "></button>
+                </div>
+            </div>
+        </div>
+
+
+            <div class="footer-column social-icons">
+                    <a href="https://www.facebook.com/grouprealestatee" aria-label="Facebook" target="_blank">
+                        <i class="bi bi-facebook"></i>
+                    </a>
+                    <a href="https://www.instagram.com/grouprealestate23/" aria-label="Instagram" target="_blank">
+                        <i class="bi bi-instagram"></i>
+                    </a>
+                    <a href="https://www.google.com/maps/place/Group+Real+Estate+%CE%A4%CE%95%CE%A1%CE%96%CE%97%CE%A3-%CE%9C%CE%A0%CE%91%CE%9A%CE%91%CE%A4%CE%96%CE%91%CE%94%CE%91%CE%9A%CE%97%CE%A3/@40.7080784,23.6983257,18z/data=!3m1!4b1!4m6!3m5!1s0x14a91f4cefe8d49d:0xf0fccd5cac534fb3!8m2!3d40.7080784!4d23.6993185!16s%2Fg%2F11vdbg6l0t?authuser=0&entry=ttu&g_ep=EgoyMDI1MDkxMC4wIKXMDSoASAFQAw%3D%3D" aria-label="Google" target="_blank">
+                        <i class="bi bi-google"></i>
+                    </a>
+            </div>
+
+
+        <div class="footer-bottom">
+            <p>© 2025 Group Real Estate - All rights reserved.</p>
+        </div>
+    </div>
+</footer>

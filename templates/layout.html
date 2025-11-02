@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-lang-key="site_title"></title>
+    
+    <link rel="icon" type="image/webp" href="{{ url_for('static', filename='assets/images/favicon.webp') }}">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;500;600;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelInput.css"/>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
+    {% block extra_head %}{% endblock %}
+</head>
+<body>
+    {% include 'partials/header.html' %}
+
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    {% include 'partials/footer.html' %}
+
+    <script src="{{ url_for('static', filename='js/main.js') }}" type="module"></script>
+    
+    {% block extra_scripts %}{% endblock %}
+
+<div class="widget-container">
+
+    <div class="chat-window widget-panel">
+        <div class="chat-header"><p>Group Real Estate Assistant</p></div>
+        <div class="chat-body"></div>
+        <div class="chat-footer">
+            <form id="chatbot-form">
+                <input type="text" id="chatbot-input" placeholder="Ρωτήστε κάτι..." autocomplete="off">
+                <button type="submit"><i class="bi bi-send-fill"></i></button>
+            </form>
+        </div>
+    </div>
+
+    <div class="a11y-panel widget-panel">
+        <div class="a11y-header"><p>Προσβασιμότητα</p></div>
+        <div class="a11y-body">
+            <button id="dark-mode-toggle" class="a11y-option">
+                <i class="bi bi-moon-stars-fill"></i>
+                <span>Dark Mode</span>
+            </button>
+        </div>
+    </div>
+
+    <button id="chatbot-toggle-button" aria-label="Chatbot">
+        <i class="bi bi-chat-dots-fill"></i>
+    </button>
+
+    <!-- <button id="a11y-toggle-button" aria-label="Accessibility Menu">
+        <i class="bi bi-universal-access-circle"></i>
+    </button> -->
+
+</div>
+
+<script src="{{ url_for('static', filename='js/chatbot.js') }}" type="module"></script>
+<script src="{{ url_for('static', filename='js/accessibility.js') }}" type="module"></script>
+</body>
+</html>

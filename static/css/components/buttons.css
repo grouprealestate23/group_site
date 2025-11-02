@@ -1,0 +1,67 @@
+/* ============================================= */
+/* ==           Button Styles                 == */
+/* ==      .btn, .filter-btn, etc.            == */
+/* ============================================= */
+
+/* --- Βασικό Στυλ Κουμπιού --- */
+.btn {
+    display: inline-block;
+    padding: 12px 24px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    border: none;
+    white-space: nowrap; /* Αποτρέπει το κείμενο από το να σπάσει σε νέα γραμμή */
+}
+
+/* --- Primary Button (Κόκκινο) --- */
+.btn-primary {
+    background-color: var(--primary-color);
+    color: var(--white);
+}
+.btn-primary:hover {
+    background-color: #00335a; /* Ένα πιο σκούρο μπλε για αντίθεση */
+}
+
+/* --- Accent Button (Κίτρινο) --- */
+.btn-accent {
+    background-color: var(--accent-color);
+    color: var(--dark-text);
+}
+.btn-accent:hover {
+    background-color: #eab82a;
+}
+
+
+/* --- Filter Buttons (για τη σελίδα ακινήτων) --- */
+.filters-toolbar {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 40px;
+    flex-wrap: wrap;
+}
+
+.filter-btn {
+    background-color: var(--white);
+    color: var(--dark-text);
+    border: 1px solid #ddd;
+    padding: 10px 20px;
+    border-radius: 30px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.filter-btn:hover {
+    background-color: var(--background-grey);
+    border-color: #ccc;
+}
+
+.filter-btn.active {
+    background-color: var(--primary-color);
+    color: var(--white);
+    border-color: var(--primary-color);
+}

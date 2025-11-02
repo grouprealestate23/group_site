@@ -1,0 +1,79 @@
+/* css/pages/contact.css (v2.1) */
+
+.contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 50px;
+    align-items: flex-start;
+}
+
+.contact-left {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.contact-details h3, .contact-form h3, .contact-right h3 {
+    font-size: 1.8rem;
+    margin-bottom: 20px;    
+    color: var(--primary-color);
+}
+
+.contact-details p { color: #666; margin-bottom: 30px; }
+.contact-details ul { list-style: none; padding: 0; }
+
+.contact-details li { 
+    display: flex; 
+    align-items: center; 
+    gap: 15px; 
+    margin-bottom: 20px; 
+    font-weight: 500; 
+}
+.contact-details i { 
+    font-size: 1.5rem; 
+    color: var(--primary-color); 
+    flex-shrink: 0; 
+}
+
+/* --- Modern Form Styles --- */
+.form-group { margin-bottom: 25px;  }
+
+.contact-form input, .contact-form textarea {
+    width: 100%;
+    padding: 15px;
+    font-family: var(--font-family);
+    font-size: 1rem;
+    background-color: #f7f8f9;
+    border: 2px solid transparent;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.contact-form input:focus, .contact-form textarea:focus {
+    outline: none;
+    background-color: var(--white);
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(225, 40, 40, 0.1);
+}
+
+.contact-form button { width: 100%; padding: 15px; font-size: 1.1rem; }
+
+/* --- Map Styles --- */
+.contact-right {
+    height: 100%;
+    min-height: 500px;
+}
+.map-container {
+    width: 100%;
+    height: 50%;  
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+}
+
+/* --- Mobile Responsive --- */
+@media (max-width: 992px) {
+    .contact-grid { 
+        grid-template-columns: 1fr;
+    }
+}

@@ -1,0 +1,98 @@
+/* css/pages/listings.css */
+
+.filters-toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 50px;
+    padding: 20px;
+}
+
+/* Το wrapper που δίνει την εμφάνιση του κουμπιού */
+.filter-select-wrapper {
+    position: relative;
+    min-width: 200px;
+}
+
+/* Το βελάκι του dropdown */
+.filter-select-wrapper::after {
+    content: '▼';
+    position: absolute;
+    top: 50%;
+    right: 15px;
+    transform: translateY(-50%);
+    font-size: 0.8rem;
+    color: #888;
+    pointer-events: none; /* Επιτρέπει το κλικ να πάει στο select */
+}
+
+/* Το ίδιο το select, το κάνουμε "αόρατο" και το βάζουμε από πάνω */
+.filter-select-wrapper select {
+    appearance: none; /* Κρύβει το default στυλ του browser */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    
+    width: 100%;
+    padding: 12px 40px 12px 20px;
+    background-color: var(--background-grey);
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    font-family: var(--font-family);
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: border-color 0.3s ease;
+}
+
+.filter-select-wrapper select:hover {
+    border-color: #ccc;
+}
+.filter-select-wrapper select:focus {
+    outline: none;
+    border-color: var(--primary-color);
+}
+
+/* --- Maps -- */
+
+#listings-map {
+    height: 500px;
+    width: 100%;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+}
+/* Style for the custom price pins on the map */
+.price-pin {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 5px 10px;
+    border-radius: 12px 12px 12px 0; /* Σχήμα "δάκρυ" */
+    font-size: 14px;
+    font-weight: 700;
+    white-space: nowrap;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+    transform: translateX(-50%); /* Κεντράρισμα της πινέζας */
+}
+
+/* css/pages/listings.css */
+
+/* Νέο στυλ για την πινέζα του γραφείου */
+.office-pin {
+    background-color: #00529b; /* Ένα επαγγελματικό μπλε χρώμα */
+    color: white;
+    width: 40px;
+    height: 40px;
+    border-radius: 50% 50% 50% 0; /* Σχήμα "δάκρυ" */
+    border: 2px solid white;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.4);
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform: rotate(-45deg); /* Το γυρνάμε για να δείχνει προς τα κάτω */
+}
+
+.office-pin i {
+    transform: rotate(45deg); /* Επαναφέρουμε το εικονίδιο στην αρχική του θέση */
+}

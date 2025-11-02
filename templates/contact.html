@@ -1,0 +1,77 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+    <section class="page-header">
+        <div class="container">
+            <h1 data-lang-key="contact_page_title"></h1>
+        </div>
+    </section>
+
+<section class="content-section contact-section">
+    <div class="container">
+        <div class="contact-grid">
+            
+            <div class="contact-left">
+                <div class="contact-details animate-on-scroll">
+                    <h3 data-lang-key="contact_info_title"></h3>
+                    <p data-lang-key="contact_info_desc"></p>
+                <ul>
+                    <li><i class="bi bi-geo-alt-fill"></i> <span>El.Venizelou 40, Nea Vrasna, 57021</span></li>
+                    <li><i class="bi bi-telephone-fill"></i> <span>+30 694 619 3307</span></li>
+                    <li><i class="bi bi-envelope-fill"></i> <span>info@grouprealestate.gr</span></li>
+                    <li>
+                        <div class="footer-column social-icons">
+                            <a href="https://www.facebook.com/grouprealestatee" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+                            <a href="https://www.instagram.com/grouprealestate23/" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+                            <a href="https://www.google.com/maps/place/Group+Real+Estate+%CE%A4%CE%95%CE%A1%CE%96%CE%97%CE%A3-%CE%9C%CE%A0%CE%91%CE%9A%CE%91%CE%A4%CE%96%CE%91%CE%94%CE%91%CE%9A%CE%97%CE%A3/@40.7080784,23.6983257,18z/data=!3m1!4b1!4m6!3m5!1s0x14a91f4cefe8d49d:0xf0fccd5cac534fb3!8m2!3d40.7080784!4d23.6993185!16s%2Fg%2F11vdbg6l0t?authuser=0&entry=ttu&g_ep=EgoyMDI1MDkxMC4wIKXMDSoASAFQAw%3D%3D" aria-label="Google"><i class="bi bi-google"></i></a>
+                        </div>
+                    </li>
+                </ul>
+                </div>
+
+                <div class="contact-form animate-on-scroll">
+
+                    <h3 data-lang-key="contact_form_title"></h3>
+
+                    <form action="/contact" method="post">
+                        <div class="form-group">
+                            <input type="text" name="name" required data-lang-placeholder="placeholder_name">
+                        </div>
+                        <div class="form-group">
+                            <input type="email" name="email" required data-lang-placeholder="placeholder_email">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" name="subject" required data-lang-placeholder="placeholder_subject">
+                        </div>
+                        <div class="form-group">
+                            <textarea name="message" rows="5" required data-lang-placeholder="placeholder_message"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary" data-lang-key="contact_send_btn"></button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="contact-right animate-on-scroll">
+                
+                <h3 data-lang-key="contact_map_title"></h3>
+
+                <div class="map-container">
+                    <iframe 
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2032.8051487853213!2d23.697930649663977!3d40.7076951251657!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14a91f4cefe8d49d%3A0xf0fccd5cac534fb3!2zR3JvdXAgUmVhbCBFc3RhdGUgzqTOlc6hzpbOl86jLc6czqDOkc6azpHOpM6WzpHOlM6RzprOl86j!5e1!3m2!1sen!2sgr!4v1757689314932!5m2!1sen!2sgr" 
+                        width="100%" 
+                        height="100%" 
+                        style="border:0;" 
+                        allowfullscreen="" 
+                        loading="lazy" 
+                        referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+    
+
+    {% endblock %}

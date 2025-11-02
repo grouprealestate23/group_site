@@ -1,0 +1,32 @@
+/* css/components/counter.css */
+
+.stats-counter-grid {
+    display: grid;
+    /* Ορίζει 3 στήλες σε desktop και 1 σε mobile */
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 30px;
+    margin-top: 60px; /* Μεγαλύτερο κενό από την πάνω ενότητα */
+    width: 100%;
+}
+
+.stat-item {
+    background-color: var(--white); /* Το κουτάκι που θυμάσαι */
+    padding: 30px 20px;
+    text-align: center;
+    border-radius: 12px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.07); /* Σκιά για να ξεχωρίζει */
+}
+
+.stat-number {
+    font-size: 3rem;
+    font-weight: 700;
+    color: var(--primary-color); /* Το κόκκινο χρώμα */
+    line-height: 1.2;
+}
+
+.stat-item p {
+    font-size: 1rem;
+    color: #555;
+    font-weight: 500;
+    margin-top: 5px;
+}

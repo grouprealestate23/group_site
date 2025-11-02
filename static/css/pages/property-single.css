@@ -1,0 +1,138 @@
+/* css/pages/property-single.css (FINAL - Grid Fix Version) */
+
+.property-single-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 2fr) 1fr; /* Διορθωμένες στήλες */
+    gap: 50px;
+    align-items: flex-start;
+}
+
+/* * Η ΟΡΙΣΤΙΚΗ ΔΙΟΡΘΩΣΗ:
+ * Αυτός ο κανόνας λέει στο αριστερό κελί του grid να επιτρέπει
+ * στο περιεχόμενό του (το carousel) να ξεχειλίσει, αντί να 
+ * τεντώνει ολόκληρη τη διάταξη της σελίδας.
+*/
+.property-main-content {
+    min-width: 0;
+}
+
+/* --- Απλοποιημένο και Στιβαρό Στυλ για το Carousel --- */
+.carousel-container {
+    position: relative;
+    width: 100%;
+    border-radius: 12px;
+    overflow: hidden; /* Κρύβει οτιδήποτε ξεχειλίζει */
+    margin-bottom: 20px;
+    background-color: #f0f0f0;
+}
+
+.carousel-main-image {
+    width: 100%;
+    height: 500px; /* Σταθερό ύψος, όπως στις κάρτες του listings */
+    display: block;
+    object-fit: cover; /* Η εικόνα καλύπτει τον χώρο χωρίς παραμόρφωση */
+    opacity: 0;
+    transition: opacity 0.4s ease-in-out;
+}
+
+.carousel-main-image.loaded {
+    opacity: 1;
+}
+
+/* ... (τα υπόλοιπα στυλ παραμένουν ίδια) ... */
+.carousel-button { position: absolute; top: 50%; transform: translateY(-50%); background-color: rgba(0, 0, 0, 0.4); color: var(--white); border: none; padding: 10px 15px; font-size: 1.8rem; cursor: pointer; border-radius: 50%; z-index: 10; transition: background-color 0.3s ease; display: flex; align-items: center; justify-content: center; width: 50px; height: 50px; }
+.carousel-button:hover { background-color: rgba(0, 0, 0, 0.6); }
+.prev-button { left: 15px; }
+.next-button { right: 15px; }
+.carousel-thumbnails { display: flex; gap: 10px; margin-top: 15px; overflow-x: auto; padding-bottom: 10px; }
+.thumbnail-image { width: 80px; height: 60px; object-fit: cover; border-radius: 8px; cursor: pointer; border: 2px solid transparent; transition: border-color 0.3s ease, transform 0.2s ease; }
+.thumbnail-image:hover { transform: scale(1.05); }
+.thumbnail-image.active { border-color: var(--primary-color); }
+.property-main-content h3 { font-size: 1.8rem; margin-top: 40px; margin-bottom: 15px; }
+.property-description { line-height: 1.8; color: #555; white-space: pre-line; }
+.property-sidebar { position: sticky; top: 140px; }
+.sidebar-widget { background: var(--white); padding: 30px; border-radius: 12px; margin-bottom: 30px; box-shadow: 0 5px 20px rgba(0,0,0,0.07); }
+.sidebar-widget .price { font-size: 2.2rem; font-weight: 700; color: var(--primary-color); margin-bottom: 20px; text-align: center; }
+.property-stats-list, .features-list { list-style: none; padding: 0; }
+.property-stats-list li { display: flex; justify-content: space-between; padding: 12px 0; border-bottom: 1px solid #f0f0f0; }
+.property-stats-list li:last-child { border-bottom: none; }
+.sidebar-widget h4 { font-size: 1.3rem; margin-bottom: 15px; }
+.features-list li { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+.features-list i { color: var(--primary-color); }
+@media (max-width: 992px) {
+    .property-single-grid { grid-template-columns: 1fr; }
+    .property-sidebar { position: static; }
+    .carousel-main-image { height: 350px; }
+}
+
+.map-widget .map-container {
+    width: 100%;
+    height: 350px;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+#property-map {
+    height: 100%;
+    width: 100%;
+}
+
+/* css/pages/property-single.css */
+
+/* --- Contact Agent Widget Styles --- */
+.contact-agent-widget h4 {
+    font-size: 1.3rem;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.contact-agent-widget .form-group {
+    margin-bottom: 15px;
+}
+
+.contact-agent-widget input,
+.contact-agent-widget textarea,
+.contact-agent-widget select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-family: var(--font-family);
+    font-size: 0.95rem;
+}
+
+/* Ειδικό στυλ για το γκρουπ του τηλεφώνου */
+.phone-group {
+    display: flex;
+    gap: 5px;
+}
+.country-code-select {
+    width: auto; /* Σταθερό πλάτος για το dropdown */
+    flex-shrink: 0;
+}
+.phone-group input {
+    width: 100%;
+}
+
+.contact-agent-widget textarea {
+    resize: vertical;
+}
+
+.form-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.form-buttons .btn {
+    width: 100%;
+    padding: 12px;
+    font-size: 1rem;
+}
+.form-buttons .btn-secondary {
+    background-color: #d94040;
+}
+.form-buttons .btn-secondary:hover {
+    background-color: #63685a;
+}

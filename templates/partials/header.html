@@ -1,0 +1,45 @@
+<header class="main-header">
+    <div class="container">
+        <a href="/" class="logo">
+            <img src="{{ url_for('static', filename='assets/images/logo-refined.webp') }}" alt="Group Real Estate Logo">
+        </a>
+
+        <nav class="main-nav">
+            <ul>
+                <li><a href="/" data-lang-key="nav_home"></a></li>
+                <li><a href="/about" data-lang-key="nav_about"></a></li>
+                <li><a href="/listings" data-lang-key="nav_listings"></a></li>
+                <li><a href="/property/the-twins" data-lang-key="nav_project_the_twins"></a></li>
+                <li><a href="/project-kerdylia" data-lang-key="nav_project_kerdylia"></a></li>
+            </ul>
+        </nav>
+
+        <div class="header-controls">
+            <div class="language-switcher">
+                <button class="current-lang">
+                    <img src="{{ url_for('static', filename='assets/images/flags/gb.svg') }}" id="current-flag">
+                    <span id="current-lang-text">EL</span>
+                </button>
+                <div class="lang-dropdown">
+                    <a href="#" data-lang="el"><img src="{{ url_for('static', filename='assets/images/flags/gr.svg') }}" alt="Greek Flag"> Ελληνικά</a>
+                    <a href="#" data-lang="en"><img src="{{ url_for('static', filename='assets/images/flags/gb.svg') }}" alt="British Flag"> English</a>
+                    <a href="#" data-lang="sr"><img src="{{ url_for('static', filename='assets/images/flags/rs.svg') }}" alt="Serbian Flag"> Srpski</a>
+                    <a href="#" data-lang="bg"><img src="{{ url_for('static', filename='assets/images/flags/bg.svg') }}" alt="Bulgarian Flag"> Български</a>
+                    <a href="#" data-lang="de"><img src="{{ url_for('static', filename='assets/images/flags/de.svg') }}" alt="German Flag"> Deutsch</a>
+                    <a href="#" data-lang="ro"><img src="{{ url_for('static', filename='assets/images/flags/ro.svg') }}" alt="Romanian Flag"> Română</a>
+                    <a href="#" data-lang="ru"><img src="{{ url_for('static', filename='assets/images/flags/ru.svg') }}" alt="Russian Flag"> Русский</a>
+                    <a href="#" data-lang="tu"><img src="{{ url_for('static', filename='assets/images/flags/tu.svg') }}" alt="Turkian Flag"> Türkçe</a>
+                    
+                </div>
+            </div>
+
+            <a href="/contact" class="btn btn-primary btn-contact-header" data-lang-key="nav_contact_btn"></a>
+
+            <button id="mobile-menu-toggle" class="mobile-menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </div>
+</header>

@@ -1,0 +1,153 @@
+/* ============================================= */
+/* ==              Card Styles                == */
+/* ==    Property Cards, Amenity Items, etc.  == */
+/* ============================================= */
+
+/* --- Property Card --- */
+.property-card {
+    background: var(--white);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.07);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column; /* Σημαντικό για το layout */
+}
+
+.property-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+}
+
+.property-card-image {
+    position: relative;
+}
+
+.property-card-image img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    display: block;
+}
+
+.property-card-status {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    background-color: var(--primary-color);
+    color: var(--white);
+    padding: 5px 12px;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.property-card-status.hot-offer {
+    background-color: #e74c3c;
+}
+
+.property-card-body {
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1; /* Επιτρέπει στο body να γεμίσει τον χώρο */
+}
+
+.property-card-body h3 {
+    font-size: 1.25rem;
+    margin-bottom: 10px;
+    min-height: 50px; /* Εξασφαλίζει ίδιο ύψος τίτλων */
+}
+
+.property-card-body .price {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    margin-bottom: 15px;
+}
+
+.property-card-body .stats {
+    display: flex;
+    gap: 15px;
+    color: #555;
+    margin-bottom: 15px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #eee;
+    font-weight: 500;
+}
+
+.property-card-body .features {
+    margin-top: auto; /* Σπρώχνει τα features στο κάτω μέρος της κάρτας */
+}
+
+.property-card-body .features h4 {
+    font-size: 1rem;
+    color: var(--dark-text);
+    margin-bottom: 5px;
+}
+
+.property-card-body .features span {
+    display: block; /* Αλλάζει σε block για να είναι το καθένα σε νέα γραμμή */
+    margin-bottom: 5px;
+    font-size: 0.9rem;
+    color: #666;
+}
+
+/* --- Amenity Item (Card) --- */
+.amenity-item {
+    padding: 20px;
+}
+
+.amenity-icon {
+    font-size: 3rem;
+    margin-bottom: 15px;
+}
+
+.amenity-item h3 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--primary-color);
+}
+
+/* Κάνουμε το container relative για να τοποθετηθούν σωστά τα κουμπιά */
+.property-card-image {
+    position: relative;
+}
+
+.card-carousel-controls {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 10px;
+    opacity: 0; /* Κρυμμένα αρχικά */
+    transition: opacity 0.3s ease;
+}
+
+/* Εμφανίζουμε τα κουμπιά όταν ο χρήστης περνάει το ποντίκι πάνω από την εικόνα */
+.property-card-image:hover .card-carousel-controls {
+    opacity: 1;
+}
+
+.card-carousel-button {
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 35px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.card-carousel-button:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+}
