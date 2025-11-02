@@ -53,7 +53,7 @@ def ask_chatbot():
         context += "Address: El. Venizelou 40, Nea Vrasna, 57021\n"
 
         # ΑΛΛΑΓΗ: Χρησιμοποιούμε το πιο πρόσφατο μοντέλο gemini-1.5-flash
-        model = genai.GenerativeModel('gemini-1.5-flash')
+        model = genai.GenerativeModel('gemini-2.5-flash')
         
         prompt = f"""
         You are a helpful and professional real estate assistant for "Group Real Estate" and your answers must always be in Greek.

@@ -2,17 +2,17 @@
 
 {% block content %}
 
-    <section class="hero-section project-hero">
-        <div class="hero-background-slider">
-            <video id="heroVideo1" class="hero-video is-active" src="{{ url_for('static', filename='assets/videos/video1.mp4') }}" muted playsinline></video>
-            <video id="heroVideo2" class="hero-video" src="{{ url_for('static', filename='assets/videos/video2.mp4') }}" muted playsinline></video>
-        </div>
-        <div class="hero-overlay"></div>
-        <div class="container hero-content">
-            <h1 class="animate-on-scroll" data-lang-key="spotlight_title"></h1>
-            <p class="animate-on-scroll" data-lang-key="spotlight_desc"></p>
-        </div>
-    </section>
+<section class="hero-v3">
+    <div class="showcase-background-slider">
+        <video class="showcase-media-item is-active" src="{{ url_for('static', filename='assets/videos/video1.webm') }}" muted playsinline loop preload="auto"></video>
+        <video class="showcase-media-item" src="{{ url_for('static', filename='assets/videos/video2.webm') }}" muted playsinline loop preload="auto"></video>
+    </div>
+    <div class="hero-v3-overlay"></div>
+    <div class="container hero-v3-content">
+        <h1 class="animate-on-scroll" data-lang-key="hero_v3_title"></h1>
+        <p class="animate-on-scroll" data-lang-key="spotlight_desc"></p>
+    </div>
+</section>
 
     <section class="content-section available-units-section">
         <div class="container">

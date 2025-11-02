@@ -75,9 +75,35 @@
 
 
 @media (max-width: 768px) {
-    .content-section {
-        margin: 20px 10px;
-        padding: 40px 20px;
-        border-radius: 20px;
+    /*
+     * ΚΑΝΟΝΑΣ ΓΙΑ ΟΛΕΣ ΤΙΣ ΛΙΣΤΕΣ ΑΚΙΝΗΤΩΝ ΣΕ MOBILE
+     * Αυτός ο κανόνας μετατρέπει ΟΛΕΣ τις γρίντες ακινήτων σε μια απλή,
+     * κάθετη λίστα, επιτρέποντας το φυσιολογικό scroll πάνω-κάτω.
+    */
+    .properties-grid,
+    .properties-list-container {
+        display: grid; /* Χρησιμοποιούμε grid για απλότητα */
+        grid-template-columns: 1fr; /* Μία στήλη που πιάνει όλο το πλάτος */
+        gap: 30px; /* Κενό 30px ανάμεσα στις κάρτες */
+    }
+
+    /* Στυλ για τις κάρτες μέσα σε αυτές τις λίστες */
+    .properties-grid .property-card,
+    .properties-list-container .property-card {
+        /* Δεν χρειάζεται να ορίσουμε πλάτος, το grid το κάνει αυτόματα */
+        margin-right: 0;
+    }
+    
+    /* Βεβαιωνόμαστε ότι το container έχει το σωστό padding */
+    .listings-section .container {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+    
+    /* --- Διορθώσεις για τα άλλα grids σε mobile --- */
+    .amenities-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 15px;
     }
 }

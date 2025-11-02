@@ -75,69 +75,7 @@
     }
 }
 
-@media (max-width: 768px) {
-    /* --- Mobile Carousels --- */
-    .amenities-grid,
-    .properties-grid {
-        display: flex;
-        flex-wrap: nowrap;
-        overflow-x: auto;
-        -webkit-overflow-scrolling: touch;
-        padding-bottom: 20px;
-        gap: 0;
-        scroll-snap-type: x mandatory; 
-        scroll-behavior: smooth;
-        touch-action: pan-x;
-    }
 
-    .amenity-item {
-        flex: 0 0 180px;
-        scroll-snap-align: center;
-    }
-    
-    .properties-grid .property-card {
-        flex: 0 0 75%;
-        margin-right: 15px;
-        scroll-snap-align: center;
-    }
-
-    /* Διαχωριστική γραμμή */
-    .amenities-grid .amenity-item + .amenity-item,
-    .properties-grid .property-card + .property-card {
-        border-left: 1px solid #e0e0e0;
-        padding-left: 15px;
-    }
-
-    /* Απόκρυψη scrollbar */
-    .amenities-grid::-webkit-scrollbar,
-    .properties-grid::-webkit-scrollbar {
-        display: none;
-    }
-    .amenities-grid, .properties-grid {
-        -ms-overflow-style: none;
-        scrollbar-width: none;
-    }
-
-    /* Carousel Dots */
-    .carousel-dots {
-        text-align: center;
-        padding-top: 15px;
-    }
-    .dot {
-        display: inline-block;
-        width: 10px;
-        height: 10px;
-        margin: 0 5px;
-        background-color: #ddd;
-        border-radius: 50%;
-        border: none;
-        cursor: pointer;
-        transition: background-color 0.3s ease;
-    }
-    .dot.active {
-        background-color: var(--primary-color);
-    }
-}
 
 .spotlight-grid { display: grid; grid-template-columns: 1fr; gap: 40px; align-items: center; }
 .spotlight-supertilte { color: var(--primary-color); font-weight: 600; margin-bottom: 10px; }

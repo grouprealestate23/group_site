@@ -120,9 +120,17 @@
         z-index: 1001;     /* Υψηλότερο z-index από το μενού (1000) */
     }
     .mobile-menu-toggle span {
-        background-color: var(--primary-color); /* Το κάνουμε κόκκινο */
+        display: block;
+        width: 25px;
+        height: 3px;
+        background-color: var(--primary-color); /* Η διόρθωση είναι εδώ */
+        margin: 5px 0;
+        transition: all 0.3s ease;
     }
-
+    .mobile-menu-toggle i {
+    font-size: 2rem; /* Προσαρμόστε το μέγεθος αν χρειάζεται */
+    color: var(--primary-color);
+    }
     /* 2. Κρύβουμε τα στοιχεία του desktop */
     .main-nav { display: none !important; }
     .main-nav ul { display: none; }
