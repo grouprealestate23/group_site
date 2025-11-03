@@ -48,7 +48,7 @@
                         <div class="property-card">
                             <div class="property-card-image" data-images='{{ prop.images|tojson }}'>
                                 <a href="{{ url_for('property_single_page', property_id=prop.id) }}">
-                                <img src="{{ url_for('static', filename=prop.main_image) }}" alt="" class="property-card-main-image" loading="lazy">
+                                <img src="{{ url_for('static', filename=prop.main_image) }}" alt="" class="property-card-main-image lazy-load">
                                 {% if prop.images|length > 1 %}
                                 <div class="card-carousel-controls">
                                     <button class="card-carousel-button prev-button" aria-label="Previous Image"><i class="bi bi-chevron-left"></i></button>

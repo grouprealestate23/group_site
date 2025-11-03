@@ -7,11 +7,11 @@
 <!-- ============================================= -->
 <section class="hero-v3">
     <div class="showcase-background-slider">
-        <img class="showcase-media-item is-active" src="{{ url_for('static', filename='assets/images/Εικόνες για Slider/ekso1.webp') }}" alt="Kerdylia Riviera View 1" loading="lazy">
-        <img class="showcase-media-item" src="{{ url_for('static', filename='assets/images/Εικόνες για Slider/mezonetes.webp') }}" alt="Kerdylia Riviera View 3" loading="lazy">
-        <img class="showcase-media-item" src="{{ url_for('static', filename='assets/images/Εικόνες για Slider/διαμερισμα2.webp') }}" alt="Kerdylia Riviera View 4" loading="lazy">
-        <video class="showcase-media-item" src="{{ url_for('static', filename='assets/videos/video1.webm') }}" muted playsinline preload="auto"></video loading="lazy">
-        <video class="showcase-media-item" src="{{ url_for('static', filename='assets/videos/video2.webm') }}" muted playsinline preload="auto"></video loading="lazy">
+        <img class="showcase-media-item is-active lazy-load" data-src="{{ url_for('static', filename='assets/images/Εικόνες για Slider/ekso1.webp') }}" alt="Kerdylia Riviera View 1">
+        <img class="showcase-media-item lazy-load" data-src="{{ url_for('static', filename='assets/images/Εικόνες για Slider/mezonetes.webp') }}" alt="Kerdylia Riviera View 3">
+        <img class="showcase-media-item lazy-load" data-src="{{ url_for('static', filename='assets/images/Εικόνες για Slider/διαμερισμα2.webp') }}" alt="Kerdylia Riviera View 4">
+        <video class="showcase-media-item lazy-load" data-src="{{ url_for('static', filename='assets/videos/video1.webm') }}" muted playsinline preload="none"></video>
+        <video class="showcase-media-item lazy-load" data-src="{{ url_for('static', filename='assets/videos/video2.webm') }}" muted playsinline preload="none"></video>
     </div>
     <div class="hero-v3-overlay"></div>
     <div class="container hero-v3-content">
@@ -35,7 +35,7 @@
         <div class="flagship-project animate-on-scroll">
             <div class="flagship-project__image-wrapper">
                 <a href="{{ url_for('project_kerdylia_page') }}">
-                    <img src="{{ url_for('static', filename='assets/images/Project_kerdylia/monokatoikies.webp') }}" alt="Kerdylia Riviera Project" loading="lazy">
+                    <img src="{{ url_for('static', filename='assets/images/Project_kerdylia/monokatoikies.webp') }}" alt="Kerdylia Riviera Project" class="lazy-load">
                 </a>
             </div>
             <div class="flagship-project__content">
@@ -61,7 +61,7 @@
         <div class="flagship-project animate-on-scroll reverse">
             <div class="flagship-project__image-wrapper">
                 <a href="{{ url_for('property_single_page', property_id=twins_project.id) }}">
-                    <img src="{{ url_for('static', filename=twins_project.main_image) }}" alt="Photo of {{ twins_project.title_key }}" loading="lazy">
+                    <img src="{{ url_for('static', filename=twins_project.main_image) }}" alt="Photo of {{ twins_project.title_key }}" class="lazy-load">
                 </a>
             </div>
             <div class="flagship-project__content">
@@ -99,7 +99,7 @@
                     <div class="property-card animate-on-scroll">
                         <div class="property-card-image" data-images='{{ prop.images|tojson }}'>
                             <a href="{{ url_for('property_single_page', property_id=prop.id) }}">
-                            <img src="{{ url_for('static', filename=prop.main_image) }}" alt="Photo of {{ prop.title_key }}" class="property-card-main-image" loading="lazy">
+                            <img src="{{ url_for('static', filename=prop.main_image) }}" alt="Photo of {{ prop.title_key }}" class="property-card-main-image" class="lazy-load">
                             {% if prop.images|length > 1 %}
                             <div class="card-carousel-controls">
                                 <button class="card-carousel-button prev-button" aria-label="Previous Image"><i class="bi bi-chevron-left"></i></button>
@@ -142,7 +142,7 @@
         <div class="caravan-spotlight-grid animate-on-scroll">
             <div class="caravan-spotlight__image">
                 <!-- Βάλε εδώ την εικόνα με το τροχόσπιτο -->
-                <img src="{{ url_for('static', filename='assets/images/caravan-image.webp') }}" alt="A caravan parked on a beautiful plot of land near the sea" loading="lazy"> 
+                <img src="{{ url_for('static', filename='assets/images/caravan-image.webp') }}" alt="A caravan parked on a beautiful plot of land near the sea" class="lazy-load"> 
             </div>
             <div class="caravan-spotlight__content">
                 <span class="caravan-spotlight__supertitle" data-lang-key="caravan_supertitle"></span>
@@ -215,7 +215,7 @@
                  <a href="/about" class="btn btn-primary" style="margin-top: 20px;" data-lang-key="trust_cta_about"></a>
             </div>
             <div class="trust-image animate-on-scroll">
-                <img src="{{ url_for('static', filename='assets/images/indexphoto2.webp') }}" alt="A happy couple having received the keys to their new home" loading="lazy">
+                <img src="{{ url_for('static', filename='assets/images/indexphoto2.webp') }}" alt="A happy couple having received the keys to their new home" class="lazy-load">
             </div>
         </div>
     </div>

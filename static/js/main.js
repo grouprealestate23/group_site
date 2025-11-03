@@ -15,6 +15,38 @@ function initMobileMenu() {
     }
 }
 
+function initLazyLoading() {
+    const lazyMedia = document.querySelectorAll('.lazy-load');
+
+    const lazyLoadObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const media = entry.target;
+                
+                if (media.dataset.src) {
+                    media.src = media.dataset.src;
+                }
+                
+                if (media.dataset.srcset) {
+                    media.srcset = media.dataset.srcset;
+                }
+
+                // Ειδικός χειρισμός για video
+                if (media.tagName === 'VIDEO' && media.dataset.src) {
+                    media.load(); // Φορτώνει το βίντεο
+                }
+
+                media.classList.remove('lazy-load');
+                observer.unobserve(media);
+            }
+        });
+    }, { rootMargin: "0px 0px 200px 0px" }); // Φόρτωσε 200px πριν φτάσει ο χρήστης
+
+    lazyMedia.forEach(media => {
+        lazyLoadObserver.observe(media);
+    });
+}
+
 function setActiveNavLink() {
     const navLinks = document.querySelectorAll('.main-nav a, .footer-column a'); // Προσθέτουμε και τα links του footer
     const currentPath = window.location.pathname;
@@ -60,6 +92,13 @@ function initHeroSlider() {
         currentIndex = (currentIndex + 1) % mediaItems.length;
         
         const nextItem = mediaItems[currentIndex];
+                if (nextItem.dataset.src) {
+            nextItem.src = nextItem.dataset.src;
+            if (nextItem.tagName === 'VIDEO') {
+                nextItem.load();
+            }
+            delete nextItem.dataset.src; // Αφαίρεσέ το για να μην ξανατρέξει
+        }
         nextItem.classList.add('is-active');
 
         // Ξεκινάμε το βίντεο αν είναι βίντεο
@@ -74,7 +113,16 @@ function initHeroSlider() {
             item.addEventListener('ended', showNext);
         }
     });
-    
+
+
+    const firstItem = mediaItems[0];
+    if (firstItem.dataset.src) {
+        firstItem.src = firstItem.dataset.src;
+        if (firstItem.tagName === 'VIDEO') {
+            firstItem.load();
+        }
+        delete firstItem.dataset.src;
+    }
     // Για τις εικόνες, αλλάζουμε κάθε 5 δευτερόλεπτα
     setInterval(() => {
         if (mediaItems[currentIndex].tagName === 'IMG') {
@@ -109,6 +157,13 @@ function initListingsCarousels() {
             const getStaticUrl = (path) => `/static/${path}`;
 
             const updateImage = () => {
+                // --- ΑΛΛΑΓΗ ΓΙΑ LAZY LOADING ---
+                // Αν η εικόνα έχει data-src, χρησιμοποίησέ το την πρώτη φορά
+                if (imageEl.dataset.src) {
+                    imageEl.src = imageEl.dataset.src;
+                    delete imageEl.dataset.src;
+                }
+                // ---------------------------------
                 imageEl.src = getStaticUrl(imagePaths[currentIndex]);
             };
 
@@ -246,6 +301,7 @@ function initPropertyCarousel() {
             thumb.src = getStaticUrl(path);
             thumb.classList.add('thumbnail-image');
             thumb.alt = `Thumbnail ${index + 1}`;
+            thumb.loading = 'lazy'; 
             thumb.addEventListener('click', () => updateCarousel(index));
             thumbnailsContainer.appendChild(thumb);
         });
@@ -405,7 +461,7 @@ function initLightbox() {
 // --- ΚΕΝΤΡΙΚΟΣ ΕΓΚΕΦΑΛΟΣ ---
 document.addEventListener('DOMContentLoaded', async () => {
     await initLanguageSwitcher(); // Πρέπει να τρέξει πρώτα για να έχουμε τις μεταφράσεις
-    
+    initLazyLoading();
     initMobileMenu();
     setActiveNavLink();
     initScrollAnimations();
