@@ -1,8 +1,8 @@
-# app.py
+# app.py (Optimized Version)
 from flask import Flask, render_template, request, jsonify, redirect
 import json
-import os # Προσθέτουμε το os για τις μεταβλητές περιβάλλοντος
-import google.generativeai as genai # Προσθέτουμε τη βιβλιοθήκη του Gemini
+import os 
+import google.generativeai as genai 
 from flask_sqlalchemy import SQLAlchemy 
 import smtplib
 import ssl
@@ -13,11 +13,11 @@ app = Flask(__name__)
 
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL') or 'sqlite:///database.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-db = SQLAlchemy(app) # <-- Αρχικοποίηση της βάσης
+db = SQLAlchemy(app) 
 
-# --- ΝΕΟ: Μοντέλο Βάσης (Αντικαθιστά το schema.sql) ---
+# --- Μοντέλο Βάσης ---
 class Conversation(db.Model):
-    __tablename__ = 'conversations' # Το όνομα του πίνακα
+    __tablename__ = 'conversations' 
     id = db.Column(db.Integer, primary_key=True)
     timestamp = db.Column(db.String, nullable=False)
     user_question = db.Column(db.String, nullable=False)
@@ -31,14 +31,31 @@ if GEMINI_API_KEY:
 else:
     print("!!! WARNING: GEMINI_API_KEY environment variable not set. Chatbot will not work.")
 
-# --- ΝΕΟ: Ρυθμίσεις Email από Environment Variables ---
-# ΠΡΟΣΟΧΗ: Αυτές οι μεταβλητές πρέπει να οριστούν στο περιβάλλον σου!
+# --- Ρυθμίσεις Email ---
 MAIL_USERNAME = os.environ.get('MAIL_USERNAME')
 MAIL_PASSWORD = os.environ.get('MAIL_PASSWORD')
-MAIL_RECEIVER = os.environ.get('MAIL_RECEIVER', MAIL_USERNAME) # Αν δεν οριστεί παραλήπτης, στέλνει στον αποστολέα
+MAIL_RECEIVER = os.environ.get('MAIL_RECEIVER', MAIL_USERNAME) 
 
 # ===============================================
-# == ΝΕΟ: Route για το Chatbot                ==
+# ==            ΒΕΛΤΙΣΤΟΠΟΙΗΣΗ ΤΑΧΥΤΗΤΑΣ         ==
+# ===============================================
+
+# --- Βοηθητική Συνάρτηση για τη φόρτωση των ακινήτων ---
+def load_properties_from_json():
+    """Διαβάζει το JSON αρχείο από τον δίσκο."""
+    try:
+        with open('static/js/data/properties.json', 'r', encoding='utf-8') as f:
+            return json.load(f)
+    except Exception as e:
+        print(f"FATAL ERROR: Could not load properties.json. {e}")
+        return []
+
+# !! ΣΗΜΑΝΤΙΚΟ: Φορτώνουμε τα ακίνητα ΜΙΑ ΦΟΡΑ κατά την εκκίνηση του app !!
+ALL_PROPERTIES = load_properties_from_json()
+print(f"Loaded {len(ALL_PROPERTIES)} properties into memory.")
+
+# ===============================================
+# == Route για το Chatbot                     ==
 # ===============================================
 
 @app.route('/ask-chatbot', methods=['POST'])
@@ -50,11 +67,12 @@ def ask_chatbot():
     if not GEMINI_API_KEY:
         return jsonify({'reply': 'Συγγνώμη, ο βοηθός δεν είναι διαθέσιμος αυτή τη στιγμή.'})
 
-    bot_reply = "Sorry, I am unable to respond right now." # Προκαθορισμένη απάντηση
+    bot_reply = "Sorry, I am unable to respond right now." 
 
     try:
         # -- ΕΠΙΚΟΙΝΩΝΙΑ ΜΕ GEMINI --
-        properties_data = load_properties()
+        # ΧΡΗΣΗ ΤΗΣ GLOBAL ΜΕΤΑΒΛΗΤΗΣ (ΓΙΑ ΤΑΧΥΤΗΤΑ)
+        properties_data = ALL_PROPERTIES 
         context = "Here is the available property data:\n"
         for prop in properties_data:
             price_str = f"€{prop['price']:,}".replace(',', '.') if prop.get('price', 0) > 0 else 'On request'
@@ -65,7 +83,6 @@ def ask_chatbot():
         context += "Email: info@grouprealestate.gr\n"
         context += "Address: El. Venizelou 40, Nea Vrasna, 57021\n"
 
-        # ΑΛΛΑΓΗ: Χρησιμοποιούμε το πιο πρόσφατο μοντέλο gemini-1.5-flash
         model = genai.GenerativeModel('gemini-2.5-flash')
         
         prompt = f"""
@@ -87,19 +104,9 @@ def ask_chatbot():
 
     except Exception as e:
         print(f"Error communicating with Gemini API: {e}")
-        # Αν αποτύχει η κλήση στο Gemini, το bot_reply θα παραμείνει το default μήνυμα σφάλματος
 
     # -- ΑΠΟΘΗΚΕΥΣΗ ΣΤΗ ΒΑΣΗ ΔΕΔΟΜΕΝΩΝ --
     try:
-   #     conn = get_db_connection()
-    #    cur = conn.cursor()
-     #   cur.execute(
-      #      "INSERT INTO conversations (timestamp, user_question, bot_answer) VALUES (?, ?, ?)",
-       #     (datetime.now().strftime("%Y-%m-%d %H:%M:%S"), user_message, bot_reply)
-       # )
-       # conn.commit()
-       # conn.close()
-
         new_convo = Conversation(
             timestamp=datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
             user_question=user_message,
@@ -109,38 +116,28 @@ def ask_chatbot():
         db.session.commit()
 
     except Exception as e:
-        db.session.rollback() # Κάνουμε rollback σε περίπτωση σφάλματος
-        print(f"Error logging to database: {e}")
-
-
-    except Exception as e:
+        db.session.rollback() 
         print(f"Error logging to database: {e}")
 
     return jsonify({'reply': bot_reply})
     
-# --- Βοηθητική Συνάρτηση για σύνδεση στη βάση ---
-#def get_db_connection():
- #   conn = sqlite3.connect('database.db')
-  #  conn.row_factory = sqlite3.Row
-   # return conn
-
-# --- Βοηθητική Συνάρτηση για τη φόρτωση των ακινήτων ---
-def load_properties():
-    with open('static/js/data/properties.json', 'r', encoding='utf-8') as f:
-        return json.load(f)
+# --- Βοηθητική Συνάρτηση για τη φόρτωση των ακινήτων (Την αφήνουμε, αλλά αλλάζουμε όνομα) ---
+# (Το όνομά της άλλαξε σε load_properties_from_json παραπάνω)
     
 @app.context_processor
 def inject_locations():
-    properties = load_properties()
+    # ΧΡΗΣΗ ΤΗΣ GLOBAL ΜΕΤΑΒΛΗΤΗΣ (ΓΙΑ ΤΑΧΥΤΗΤΑ)
+    properties = ALL_PROPERTIES
     location_counts = {}
     location_names = {}
     for prop in properties:
-        slug = prop.get('location_slug')
-        name = prop.get('location')
-        if slug and name:
-            location_counts[slug] = location_counts.get(slug, 0) + 1
-            if slug not in location_names:
-                location_names[slug] = name
+       if prop.get('lat') and prop.get('lon'):
+            slug = prop.get('location_slug')
+            name = prop.get('location')
+            if slug and name:
+                location_counts[slug] = location_counts.get(slug, 0) + 1
+                if slug not in location_names:
+                    location_names[slug] = name
 
     sorted_locations = sorted(location_names.items(), key=lambda item: item[1])
 
@@ -159,17 +156,17 @@ def format_price(value):
     
 @app.route('/')
 def home():
-    all_properties = load_properties()
+    # all_properties = load_properties() # <-- ΠΑΛΙΟΣ ΤΡΟΠΟΣ (ΑΡΓΟΣ)
+    
+    # ΧΡΗΣΗ ΤΗΣ GLOBAL ΜΕΤΑΒΛΗΤΗΣ (ΓΙΑ ΤΑΧΥΤΗΤΑ)
+    # 1. Βρίσκουμε τα δεδομένα για το "The Twins"
+    twins_project_data = next((p for p in ALL_PROPERTIES if p['id'] == 'the-twins'), None)
 
-    # 1. Βρίσκουμε τα δεδομένα για το "The Twins" για να τα στείλουμε στο template
-    twins_project_data = next((p for p in all_properties if p['id'] == 'the-twins'), None)
-
-    # 2. Παίρνουμε 3 δείγματα ακινήτων που ΔΕΝ είναι τα βασικά projects
+    # 2. Παίρνουμε 3 δείγματα ακινήτων
     excluded_ids = ['kerdylia-monokatoikia', 'the-twins', 'kerdylia-maisonette-m1', 'kerdylia-apartment-d1', 'kerdylia-isogio', 'kerdylia-orofos']
-    sample_listings_pool = [p for p in all_properties if p['id'] not in excluded_ids]
+    sample_listings_pool = [p for p in ALL_PROPERTIES if p['id'] not in excluded_ids]
     sample_listings = sample_listings_pool[:3]
 
-    # 3. Στέλνουμε τις μεταβλητές 'twins_project' και 'sample_listings' στο index.html
     return render_template('index.html', 
                            twins_project=twins_project_data, 
                            sample_listings=sample_listings)
@@ -180,7 +177,10 @@ def about_page():
 
 @app.route('/listings')
 def listings_page():
-    all_properties = load_properties()
+    # all_properties = load_properties() # <-- ΠΑΛΙΟΣ ΤΡΟΠΟΣ (ΑΡΓΟΣ)
+    
+    # ΧΡΗΣΗ ΤΗΣ GLOBAL ΜΕΤΑΒΛΗΤΗΣ (ΓΙΑ ΤΑΧΥΤΗΤΑ)
+    all_properties = ALL_PROPERTIES
     
     current_filters = {
         'type': request.args.get('type', 'all'),
@@ -203,15 +203,15 @@ def listings_page():
                 'bathrooms': prop.get('bathrooms', 0)
             })
 
-    filtered_properties = all_properties[:]
+    # filtered_properties = all_properties[:] # <-- ΠΑΛΙΟΣ ΤΡΟΠΟΣ
+    filtered_properties = ALL_PROPERTIES[:] # ΧΡΗΣΗ ΤΗΣ GLOBAL ΜΕΤΑΒΛΗΤΗΣ
+
     if current_filters['type'] != 'all':
         filtered_properties = [p for p in filtered_properties if p['type'] == current_filters['type']]
     if current_filters['location'] != 'all':
         filtered_properties = [p for p in filtered_properties if p['location_slug'] == current_filters['location']]
     
-    # ΔΙΟΡΘΩΣΗ: Η ταξινόμηση τιμών πρέπει να χειρίζεται τις τιμές > 0
     if current_filters['sort'] == 'price_asc':
-        # Στέλνει τα ακίνητα χωρίς τιμή (τιμή 0) στο τέλος
         filtered_properties.sort(key=lambda p: p.get('price', 0) if p.get('price', 0) > 0 else float('inf'))
     elif current_filters['sort'] == 'price_desc':
         filtered_properties.sort(key=lambda p: p.get('price', 0), reverse=True)
@@ -223,8 +223,10 @@ def listings_page():
 
 @app.route('/property/<property_id>')
 def property_single_page(property_id):
-    properties = load_properties()
-    selected_property = next((prop for prop in properties if prop['id'] == property_id), None)
+    # properties = load_properties() # <-- ΠΑΛΙΟΣ ΤΡΟΠΟΣ (ΑΡΓΟΣ)
+    
+    # ΧΡΗΣΗ ΤΗΣ GLOBAL ΜΕΤΑΒΛΗΤΗΣ (ΓΙΑ ΤΑΧΥΤΗΤΑ)
+    selected_property = next((prop for prop in ALL_PROPERTIES if prop['id'] == property_id), None)
     
     if selected_property is None:
         return "Property not found", 404
@@ -246,9 +248,11 @@ def property_single_page(property_id):
 
 @app.route('/project-kerdylia')
 def project_kerdylia_page():
-    all_properties = load_properties()
+    # all_properties = load_properties() # <-- ΠΑΛΙΟΣ ΤΡΟΠΟΣ (ΑΡΓΟΣ)
+    
+    # ΧΡΗΣΗ ΤΗΣ GLOBAL ΜΕΤΑΒΛΗΤΗΣ (ΓΙΑ ΤΑΧΥΤΗΤΑ)
     project_properties = [
-        prop for prop in all_properties 
+        prop for prop in ALL_PROPERTIES 
         if prop.get("project_id") == "kerdylia_riviera"
     ]
     return render_template('project-kerdylia.html', properties=project_properties)
@@ -261,11 +265,31 @@ def contact_page():
         subject = request.form['subject']
         message = request.form['message']
 
-        # Λογική αποστολής email εδώ...
-        print(f"ΝΕΟ ΜΗΝΥΜΑ ΑΠΟ: {name} ({email})")
-        print(f"ΘΕΜΑ: {subject}")
-        print(f"ΜΗΝΥΜΑ: {message}")
+        # ===============================================
+        # ==            ΔΙΟΡΘΩΣΗ BUG EMAIL             ==
+        # ===============================================
+        
+        # print(f"ΝΕΟ ΜΗΝΥΜΑ ΑΠΟ: {name} ({email})") # <-- ΠΑΛΙΟΣ ΚΩΔΙΚΑΣ (ΔΕΝ ΕΣΤΕΛΝΕ)
+        # print(f"ΘΕΜΑ: {subject}")
+        # print(f"ΜΗΝΥΜΑ: {message}")
+        
+        # ΝΕΟΣ ΚΩΔΙΚΑΣ ΠΟΥ ΣΤΕΛΝΕΙ EMAIL:
+        email_subject = f"Νέο Μήνυμα από Φόρμα Επικοινωνίας: {subject}"
+        email_body = f"""
+        Έχετε λάβει ένα νέο μήνυμα από την κεντρική φόρμα επικοινωνίας του site.
 
+        Στοιχεία Αποστολέα:
+        Όνομα: {name}
+        Email: {email}
+
+        Θέμα: {subject}
+
+        Μήνυμα:
+        {message}
+        """
+        send_email_logic(email_subject, email_body)
+        
+        # (Προαιρετικά, μπορείς να προσθέσεις ένα μήνυμα επιτυχίας με flash)
         return render_template('contact.html') 
 
     return render_template('contact.html')
@@ -284,7 +308,6 @@ def send_email_logic(subject, body):
     context = ssl.create_default_context()
 
     try:
-        # ΑΛΛΑΓΗ: Χρησιμοποιούμε smtp.office365.com για hotmail/outlook
         with smtplib.SMTP('smtp.office365.com', 587) as smtp:
             smtp.starttls(context=context)
             smtp.login(MAIL_USERNAME, MAIL_PASSWORD)
@@ -292,7 +315,6 @@ def send_email_logic(subject, body):
         print("Email sent successfully!")
         return True
     except Exception as e:
-        # Δοκιμή με GMail ως εναλλακτική
         try:
             with smtplib.SMTP_SSL('smtp.gmail.com', 465, context=context) as smtp:
                 smtp.login(MAIL_USERNAME, MAIL_PASSWORD)
@@ -303,7 +325,6 @@ def send_email_logic(subject, body):
             print(f"Error sending email via Office365: {e}")
             print(f"Error sending email via GMail: {e_gmail}")
             return False
-
 
 @app.route('/send_message', methods=['POST'])
 def send_message():
@@ -349,5 +370,4 @@ def propose_price():
     return redirect(f'/property/{property_id}')
 
 if __name__ == '__main__':
-    # ΑΛΛΑΓΗ: debug=True για ανάπτυξη, host='0.0.0.0' για να είναι προσβάσιμο στο δίκτυο
     app.run(host='0.0.0.0', port=5000, debug=True)
