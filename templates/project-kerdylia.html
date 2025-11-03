@@ -4,8 +4,9 @@
 
 <section class="hero-v3">
     <div class="showcase-background-slider">
-       <video class="showcase-media-item" src="{{ url_for('static', filename='assets/videos/video1.webm') }}" muted playsinline preload="auto"></video>
-        <video class="showcase-media-item" src="{{ url_for('static', filename='assets/videos/video2.webm') }}" muted playsinline preload="auto"></video>    </div>
+       <video class="showcase-media-item lazy-load" src="{{ url_for('static', filename='assets/videos/video1.webm') }}" muted playsinline preload="auto"></video>
+        <video class="showcase-media-item lazy-load" src="{{ url_for('static', filename='assets/videos/video2.webm') }}" muted playsinline preload="auto"></video>    
+    </div>
     <div class="hero-v3-overlay"></div>
     <div class="container hero-v3-content">
         <h1 class="animate-on-scroll" data-lang-key="hero_v3_title"></h1>
@@ -25,7 +26,7 @@
                         <div class="property-card">
                             <div class="property-card-image" data-images='{{ prop.images|tojson }}'>
                                 <a href="{{ url_for('property_single_page', property_id=prop.id) }}">
-                                <img src="{{ url_for('static', filename=prop.main_image) }}" alt="" class="property-card-main-image">
+                                <img src="{{ url_for('static', filename=prop.main_image) }}" alt="" class="property-card-main-image lazy-load">
 
                                 {% if prop.images|length > 1 %}
                                 <div class="card-carousel-controls">
