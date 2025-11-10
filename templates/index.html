@@ -25,6 +25,60 @@
 </section>
 
 
+<!-- ============================================= -->
+<!-- ==     V3: SOME OF OUR LISTINGS SECTION    == -->
+<!-- ============================================= -->
+<section class="content-section">
+    <div class="container">
+        <div class="section-header-flex animate-on-scroll">
+            <div>
+                <h2 data-lang-key="some_listings_title"></h2>
+                <p data-lang-key="some_listings_subtitle"></p>
+            </div>
+            <a href="{{ url_for('listings_page') }}" class="btn btn-primary" data-lang-key="some_listings_cta"></a>
+        </div>
+
+        <div class="properties-grid">
+            {% if sample_listings %}
+                {% for prop in sample_listings %}
+                    <div class="property-card animate-on-scroll">
+                        <div class="property-card-image" data-images='{{ prop.images|tojson }}'>
+                            <a href="{{ url_for('property_single_page', property_id=prop.id) }}">
+                            <img src="{{ url_for('static', filename=prop.main_image) }}" alt="Photo of {{ prop.title_key }}" class="property-card-main-image" class="lazy-load">
+                            {% if prop.images|length > 1 %}
+                            <div class="card-carousel-controls">
+                                <button class="card-carousel-button prev-button" aria-label="Previous Image"><i class="bi bi-chevron-left"></i></button>
+                                <button class="card-carousel-button next-button" aria-label="Next Image"><i class="bi bi-chevron-right"></i></button>
+                            </div>
+                            {% endif %}
+                            </a>
+                            <div class="property-card-status" data-lang-key="type_{{ prop.type }}"></div>
+                        </div>
+                        <div class="property-card-body">
+                            <h3 data-lang-key="{{ prop.title_key }}"></h3>
+                            <p class="location">{{ prop.location }}</p>
+                            <p class="price">
+                                {% if prop.price > 0 %}
+                                    €{{ prop.price|formatprice }}
+                                {% else %}
+                                    <span data-lang-key="price_on_request"></span>
+                                {% endif %}
+                            </p>
+                            <div class="stats">
+                                <span><i class="bi bi-aspect-ratio"></i> {{ prop.area }} m²</span>
+                                {% if prop.bedrooms > 0 %}
+                                    <span><i class="bi bi-door-open"></i> {{ prop.bedrooms }} <span data-lang-key="card_bedrooms"></span></span>
+                                {% endif %}
+                            </div>
+                            <a href="{{ url_for('property_single_page', property_id=prop.id) }}" class="btn btn-primary" data-lang-key="more_details_btn"></a>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% endif %}
+        </div>
+    </div>
+</section>
+
 
 
 <!-- ============================================= -->
@@ -77,60 +131,6 @@
             </div>
         </div>
         {% endif %}
-    </div>
-</section>
-
-<!-- ============================================= -->
-<!-- ==     V3: SOME OF OUR LISTINGS SECTION    == -->
-<!-- ============================================= -->
-<section class="content-section">
-    <div class="container">
-        <div class="section-header-flex animate-on-scroll">
-            <div>
-                <h2 data-lang-key="some_listings_title"></h2>
-                <p data-lang-key="some_listings_subtitle"></p>
-            </div>
-            <a href="{{ url_for('listings_page') }}" class="btn btn-primary" data-lang-key="some_listings_cta"></a>
-        </div>
-
-        <div class="properties-grid">
-            {% if sample_listings %}
-                {% for prop in sample_listings %}
-                    <div class="property-card animate-on-scroll">
-                        <div class="property-card-image" data-images='{{ prop.images|tojson }}'>
-                            <a href="{{ url_for('property_single_page', property_id=prop.id) }}">
-                            <img src="{{ url_for('static', filename=prop.main_image) }}" alt="Photo of {{ prop.title_key }}" class="property-card-main-image" class="lazy-load">
-                            {% if prop.images|length > 1 %}
-                            <div class="card-carousel-controls">
-                                <button class="card-carousel-button prev-button" aria-label="Previous Image"><i class="bi bi-chevron-left"></i></button>
-                                <button class="card-carousel-button next-button" aria-label="Next Image"><i class="bi bi-chevron-right"></i></button>
-                            </div>
-                            {% endif %}
-                            </a>
-                            <div class="property-card-status" data-lang-key="type_{{ prop.type }}"></div>
-                        </div>
-                        <div class="property-card-body">
-                            <h3 data-lang-key="{{ prop.title_key }}"></h3>
-                            <p class="location">{{ prop.location }}</p>
-                            <p class="price">
-                                {% if prop.price > 0 %}
-                                    €{{ prop.price|formatprice }}
-                                {% else %}
-                                    <span data-lang-key="price_on_request"></span>
-                                {% endif %}
-                            </p>
-                            <div class="stats">
-                                <span><i class="bi bi-aspect-ratio"></i> {{ prop.area }} m²</span>
-                                {% if prop.bedrooms > 0 %}
-                                    <span><i class="bi bi-door-open"></i> {{ prop.bedrooms }} <span data-lang-key="card_bedrooms"></span></span>
-                                {% endif %}
-                            </div>
-                            <a href="{{ url_for('property_single_page', property_id=prop.id) }}" class="btn btn-primary" data-lang-key="more_details_btn"></a>
-                        </div>
-                    </div>
-                {% endfor %}
-            {% endif %}
-        </div>
     </div>
 </section>
 

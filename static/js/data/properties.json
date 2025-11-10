@@ -1,5 +1,58 @@
 [
-{
+    {
+        "id": "detached-house-55m²",
+        "title_key": "prop_title_detached-house-55m²",
+        "description_key": "prop_desc_detached-house-55m²",
+        "location": "Paralia Vrasna",
+        "location_slug": "paralia-vrasna",
+        "status": "for_sale",
+        "type": "maisonette_detached",
+        "price": 150000,
+        "area": 55,
+        "bedrooms": 2,
+        "bathrooms": 1,
+        "lat": null,
+        "lon": null,
+        "features_keys": [
+            "feature_private_garden",
+            "feature_thermal_insulation",
+            "feature_solar_heater",
+            "feature_detached"
+        ],
+        "images": [
+            "assets/images/properties/detached-house-55m²/330910144_1600x1200.webp",
+            "assets/images/properties/detached-house-55m²/330034867_1600x1200.webp"
+        ],
+        "main_image": "assets/images/properties/detached-house-55m²/330910144_1600x1200.webp"
+    },
+    {
+        "id": "detached-house-49m²",
+        "title_key": "prop_title_detached-house-49m²",
+        "description_key": "prop_desc_detached-house-49m²",
+        "location": "Paralia Vrasna",
+        "location_slug": "paralia-vrasna",
+        "status": "for_sale",
+        "type": "maisonette",
+        "price": 140000,
+        "area": 49,
+        "bedrooms": 2,
+        "bathrooms": 1,
+        "lat": null,
+        "lon": null,
+        "features_keys": [
+            "feature_parking",
+            "feature_veranda",
+            "feature_private_garden",
+            "feature_detached",
+            "feature_near_sea_500m"
+        ],
+        "images": [
+            "assets/images/properties/detached-house-49m²/332681134_1600x1200.webp",
+            "assets/images/properties/detached-house-49m²/332680594_1600x1200.webp"
+        ],
+        "main_image": "assets/images/properties/detached-house-49m²/332681134_1600x1200.webp"
+    },
+    {
         "id": "plot-paralia-vrasna-200",
         "lat": null,
         "lon": null,
@@ -8,7 +61,7 @@
         "type": "plot",
         "location": "Paralia Vrasna",
         "location_slug": "paralia-vrasna",
-        "price": 40000 ,
+        "price": 40000,
         "area": 200,
         "bedrooms": 0,
         "bathrooms": 0,
@@ -19,44 +72,9 @@
             "feature_near_sea_40m"
         ],
         "main_image": "assets/images/properties/oikopeda_feggaraki.webp",
-        "images":["assets/images/properties/oikopeda_feggaraki.webp",
-                 "assets/images/properties/monokatoikia_feggaraki.webp"
-                 ]
-    },
-    {
-        "id": "maisonette-asprovalta-80",
-        "lat": 40.727998645158,
-        "lon": 23.71201499009,
-        "title_key": "prop_title_asprovalta_80",
-        "status": "for_sale",
-        "type": "maisonette",
-        "location": "Asprovalta",
-        "location_slug": "asprovalta",
-        "price": 130000,
-        "area": 80,
-        "bedrooms": 2,
-        "bathrooms": 2,
-        "description_key": "prop_desc_asprovalta_80",
-        "features_keys": [
-            "feature_renovated",
-            "feature_near_sea"
-        ],
-        "main_image": "assets/images/properties/Maisonette 80m², Asprovalta/290698534_1600x1200.jpg.webp",
         "images": [
-            "assets/images/properties/Maisonette 80m², Asprovalta/290698534_1600x1200.jpg.webp",
-            "assets/images/properties/Maisonette 80m², Asprovalta/290698500_1600x1200.jpg.webp",
-            "assets/images/properties/Maisonette 80m², Asprovalta/290698513_1600x1200.jpg.webp",
-            "assets/images/properties/Maisonette 80m², Asprovalta/290698514_1600x1200.jpg.webp",
-            "assets/images/properties/Maisonette 80m², Asprovalta/290698517_1600x1200.jpg.webp",
-            "assets/images/properties/Maisonette 80m², Asprovalta/290698520_1600x1200.jpg.webp",
-            "assets/images/properties/Maisonette 80m², Asprovalta/290698522_1600x1200.jpg.webp",
-            "assets/images/properties/Maisonette 80m², Asprovalta/290698524_1600x1200.jpg.webp",
-            "assets/images/properties/Maisonette 80m², Asprovalta/290698528_1600x1200.jpg.webp",
-            "assets/images/properties/Maisonette 80m², Asprovalta/290698530_1600x1200.jpg.webp",
-            "assets/images/properties/Maisonette 80m², Asprovalta/290698533_1600x1200.jpg.webp",
-            "assets/images/properties/Maisonette 80m², Asprovalta/290698535_1600x1200.jpg.webp",
-            "assets/images/properties/Maisonette 80m², Asprovalta/290698536_1600x1200.jpg.webp",
-            "assets/images/properties/Maisonette 80m², Asprovalta/290698538_1600x1200.jpg.webp"
+            "assets/images/properties/oikopeda_feggaraki.webp",
+            "assets/images/properties/monokatoikia_feggaraki.webp"
         ]
     },
     {
@@ -88,7 +106,160 @@
             "assets/images/properties/Maisonette, 93 m² , Nea Vrasna/kouzina.webp",
             "assets/images/properties/Maisonette, 93 m² , Nea Vrasna/living-room.webp",
             "assets/images/properties/Maisonette, 93 m² , Nea Vrasna/wc.webp"
-
+        ]
+    },
+    {
+        "id": "kerdylia-maisonette-no1-no2",
+        "project_id": "kerdylia_riviera",
+        "title_key": "prop_title_kerdylia_no1_no2",
+        "status": "for_sale",
+        "type": "maisonette",
+        "location": "Akti Neon Kerdilion",
+        "location_slug": "nea-kerdilia",
+        "lat": 40.773498,
+        "lon": 23.791839,
+        "price": 350000,
+        "area": 114,
+        "bedrooms": 3,
+        "bathrooms": 2,
+        "description_key": "prop_desc_kerdylia_no1_no2",
+        "features_keys": [
+            "feature_energy_a_plus",
+            "feature_parking",
+            "feature_private_garden",
+            "feature_near_sea_100m",
+            "feature_solar_heater",
+            "feature_ac"
+        ],
+        "main_image": "assets/images/Project_kerdylia/ekso1.webp",
+        "images": [
+            "assets/images/Project_kerdylia/Taratsa.webp",
+            "assets/images/Project_kerdylia/ekso2.webp",
+            "assets/images/Project_kerdylia/1os_orofos.webp"
+        ]
+    },
+    {
+        "id": "kerdylia-apartment-d1-d6",
+        "project_id": "kerdylia_riviera",
+        "title_key": "prop_title_kerdylia_d1_d6",
+        "status": "for_sale",
+        "type": "apartment",
+        "location": "Akti Neon Kerdilion",
+        "location_slug": "nea-kerdilia",
+        "lat": 40.773498,
+        "lon": 23.791839,
+        "price": 124000,
+        "area": 51,
+        "bedrooms": 2,
+        "bathrooms": 1,
+        "description_key": "prop_desc_kerdylia_d1_d6",
+        "features_keys": [
+            "feature_energy_a_plus",
+            "feature_parking",
+            "feature_private_garden",
+            "feature_roof_garden",
+            "feature_near_sea_100m",
+            "feature_solar_heater",
+            "feature_ac"
+        ],
+        "main_image": "assets/images/Project_kerdylia/Isogio.webp",
+        "images": [
+            "assets/images/Project_kerdylia/Isogio.webp",
+            "assets/images/Project_kerdylia/ekso1.webp",
+            "assets/images/Project_kerdylia/ekso2.webp"
+        ]
+    },
+    {
+        "id": "kerdylia-apartment-d7-d10",
+        "project_id": "kerdylia_riviera",
+        "title_key": "prop_title_kerdylia_d7_d10",
+        "status": "for_sale",
+        "type": "apartment",
+        "location": "Akti Neon Kerdilion",
+        "location_slug": "nea-kerdilia",
+        "lat": 40.773498,
+        "lon": 23.791839,
+        "price": 155000,
+        "area": 51,
+        "bedrooms": 2,
+        "bathrooms": 1,
+        "description_key": "prop_desc_kerdylia_d7_d10",
+        "features_keys": [
+            "feature_energy_a_plus",
+            "feature_parking",
+            "feature_private_garden",
+            "feature_roof_garden",
+            "feature_near_sea_100m",
+            "feature_solar_heater",
+            "feature_ac"
+        ],
+        "main_image": "assets/images/Project_kerdylia/ekso5.webp",
+        "images": [
+            "assets/images/Project_kerdylia/ekso1.webp",
+            "assets/images/Project_kerdylia/ekso2.webp",
+            "assets/images/Project_kerdylia/1os_orofos.webp"
+        ]
+    },    
+    {
+        "id": "kerdylia-maisonette-k1-k5",
+        "project_id": "kerdylia_riviera",
+        "title_key": "prop_title_kerdylia_k1_k5",
+        "status": "for_sale",
+        "type": "maisonette_detached",
+        "location": "Akti Neon Kerdilion",
+        "location_slug": "nea-kerdilia",
+        "lat": 40.773498,
+        "lon": 23.791839,
+        "price": 200000,
+        "area": 75,
+        "bedrooms": 3,
+        "bathrooms": 1,
+        "description_key": "prop_desc_kerdylia_k1_k5",
+        "features_keys": [
+            "feature_energy_a_plus",
+            "feature_parking",
+            "feature_private_garden",
+            "feature_near_sea_100m",
+            "feature_solar_heater",
+            "feature_ac"
+        ],
+        "main_image": "assets/images/Project_kerdylia/monokatoikies.webp",
+        "images": [
+            "assets/images/Project_kerdylia/monokatoikies.webp",
+            "assets/images/Project_kerdylia/theseis_parking.webp",
+            "assets/images/Project_kerdylia/Taratsa.webp",
+            "assets/images/Project_kerdylia/ekso6.webp"
+        ]
+    },
+    {
+        "id": "kerdylia-maisonette-k6-k7",
+        "project_id": "kerdylia_riviera",
+        "title_key": "prop_title_kerdylia_k6_k7",
+        "status": "for_sale",
+        "type": "maisonette_detached",
+        "location": "Akti Neon Kerdilion",
+        "location_slug": "nea-kerdilia",
+        "lat": 40.773498,
+        "lon": 23.791839,
+        "price": 225000,
+        "area": 90,
+        "bedrooms": 3,
+        "bathrooms": 1,
+        "description_key": "prop_desc_kerdylia_k6_k7",
+        "features_keys": [
+            "feature_energy_a_plus",
+            "feature_parking",
+            "feature_private_garden",
+            "feature_near_sea_100m",
+            "feature_solar_heater",
+            "feature_ac"
+        ],
+        "main_image": "assets/images/Project_kerdylia/monokatoikies.webp",
+        "images": [
+            "assets/images/Project_kerdylia/monokatoikies.webp",
+            "assets/images/Project_kerdylia/theseis_parking.webp",
+            "assets/images/Project_kerdylia/Taratsa.webp",
+            "assets/images/Project_kerdylia/ekso6.webp"
         ]
     },
     {
@@ -120,8 +291,7 @@
             "assets/images/properties/Apartment, 45m² , Logkari/top_down_apartment_variant_1-scaled.webp"
         ]
     },
-
-        {
+    {
         "id": "maisonette-kerdilia-85",
         "lat": 40.773993,
         "lon": 23.798166,
@@ -130,7 +300,7 @@
         "type": "maisonette",
         "location": "Akti Neon Kerdilion",
         "location_slug": "nea-kerdilia",
-        "price": 230000 ,
+        "price": 230000,
         "area": 85,
         "bedrooms": 3,
         "bathrooms": 2,
@@ -167,123 +337,39 @@
         ]
     },
     {
-    "id": "kerdylia-apartment-d1",
-    "project_id": "kerdylia_riviera",
-    "title_key": "prop_title_kerdylia_d1",
-    "status": "for_sale",
-    "type": "apartment",
-    "location": "Akti Neon Kerdilion",
-    "location_slug": "nea-kerdilia",
-    "lat": 40.773498,
-    "lon": 23.791839,
-    "price": 0,
-    "area": 45,
-    "bedrooms": 2,
-    "bathrooms": 1,
-    "description_key": "prop_desc_kerdilia_d1",
-    "features_keys": ["feature_energy_a_plus", "feature_parking", "feature_private_garden"],
-    "main_image": "assets/images/Project_kerdylia/ekso1.webp",
-    "images": [
-        "assets/images/Project_kerdylia/ekso1.webp",
-        "assets/images/Project_kerdylia/ekso2.webp",
-        "assets/images/Project_kerdylia/Isogio.webp",
-        "assets/images/Project_kerdylia/1os_orofos.webp"
-    ]
-},
-{
-    "id": "kerdylia-maisonette-m1",
-    "project_id": "kerdylia_riviera",
-    "title_key": "prop_title_kerdylia_m1",
-    "status": "for_sale",
-    "type": "maisonette",
-    "location": "Akti Neon Kerdilion",
-    "location_slug": "nea-kerdilia",
-    "lat": 40.773498,
-    "lon": 23.791839,
-    "price": 0,
-    "area": 90,
-    "bedrooms": 3,
-    "bathrooms": 2,
-    "description_key": "prop_desc_kerdylia_m1",
-    "features_keys": ["feature_energy_a_plus", "feature_parking", "feature_private_garden"],
-    "main_image": "assets/images/Project_kerdylia/monokatoikies.webp",
-    "images": [
-        "assets/images/Project_kerdylia/monokatoikies.webp",
-        "assets/images/Project_kerdylia/theseis_parking.webp"
-    ]
-}
-,
-{
-    "id": "kerdylia-isogio",
-    "project_id": "kerdylia_riviera",
-    "is_new_project": true,
-    "title_key": "prop_title_kerdylia_isogio",
-    "status": "for_sale",
-    "type": "apartment",
-    "location": "Akti Neon Kerdilion",
-    "location_slug": "nea-kerdilia",
-    "lat": 40.773498,
-    "lon": 23.791839,
-    "price": 0,
-    "area": 65,
-    "bedrooms": 2,
-    "bathrooms": 1,
-    "description_key": "prop_desc_kerdylia_isogio",
-    "features_keys": ["feature_energy_a_plus", "feature_parking", "feature_private_garden", "feature_near_sea"],
-    "main_image": "assets/images/Project_kerdylia/Isogio.webp",
-    "images": [
-        "assets/images/Project_kerdylia/Isogio.webp"
-    ]
-},
-{
-    "id": "kerdylia-orofos",
-    "project_id": "kerdylia_riviera",
-    "is_new_project": true,
-    "title_key": "prop_title_kerdylia_orofos",
-    "status": "for_sale",
-    "type": "apartment",
-    "location": "Akti Neon Kerdilion",
-    "location_slug": "nea-kerdilia",
-    "lat": 40.773498,
-    "lon": 23.791839,
-    "price": 0,
-    "area": 60,
-    "bedrooms": 2,
-    "bathrooms": 1,
-    "description_key": "prop_desc_kerdylia_orofos",
-    "features_keys": ["feature_energy_a_plus", "feature_parking", "feature_sea_view", "feature_large_verandas"],
-    "main_image": "assets/images/Project_kerdylia/1os_orofos.webp",
-    "images": [
-        "assets/images/Project_kerdylia/1os_orofos.webp"
-    ]
-},
-{
-    "id": "kerdylia-monokatoikia",
-    "project_id": "kerdylia_riviera",
-    "is_new_project": true,
-    "title_key": "prop_title_kerdylia_monokatoikia",
-    "status": "for_sale",
-    "type": "maisonette",
-    "location": "Akti Neon Kerdilion",
-    "location_slug": "nea-kerdilia",
-    "lat": 40.773498,
-    "lon": 23.791839,
-    "price": 0,
-    "area": 110,
-    "bedrooms": 3,
-    "bathrooms": 2,
-    "description_key": "prop_desc_kerdylia_monokatoikia",
-    "features_keys": ["feature_energy_a_plus", "feature_parking", "feature_private_garden", "feature_detached"],
-    "main_image": "assets/images/Project_kerdylia/monokatoikies.webp",
-    "images": [
-        "assets/images/Project_kerdylia/monokatoikies.webp",
-        "assets/images/Project_kerdylia/theseis_parking.webp",
-        "assets/images/Project_kerdylia/ekso1.webp",
-        "assets/images/Project_kerdylia/ekso2.webp",
-        "assets/images/Project_kerdylia/ekso3.webp",
-        "assets/images/Project_kerdylia/ekso4.webp",
-        "assets/images/Project_kerdylia/ekso5.webp",
-        "assets/images/Project_kerdylia/ekso6.webp"
-    ]
-}
+        "id": "maisonette-asprovalta-80",
+        "lat": 40.727998645158,
+        "lon": 23.71201499009,
+        "title_key": "prop_title_asprovalta_80",
+        "status": "for_sale",
+        "type": "maisonette",
+        "location": "Asprovalta",
+        "location_slug": "asprovalta",
+        "price": 130000,
+        "area": 80,
+        "bedrooms": 2,
+        "bathrooms": 2,
+        "description_key": "prop_desc_asprovalta_80",
+        "features_keys": [
+            "feature_renovated",
+            "feature_near_sea"
+        ],
+        "main_image": "assets/images/properties/Maisonette 80m², Asprovalta/290698534_1600x1200.jpg.webp",
+        "images": [
+            "assets/images/properties/Maisonette 80m², Asprovalta/290698534_1600x1200.jpg.webp",
+            "assets/images/properties/Maisonette 80m², Asprovalta/290698500_1600x1200.jpg.webp",
+            "assets/images/properties/Maisonette 80m², Asprovalta/290698513_1600x1200.jpg.webp",
+            "assets/images/properties/Maisonette 80m², Asprovalta/290698514_1600x1200.jpg.webp",
+            "assets/images/properties/Maisonette 80m², Asprovalta/290698517_1600x1200.jpg.webp",
+            "assets/images/properties/Maisonette 80m², Asprovalta/290698520_1600x1200.jpg.webp",
+            "assets/images/properties/Maisonette 80m², Asprovalta/290698522_1600x1200.jpg.webp",
+            "assets/images/properties/Maisonette 80m², Asprovalta/290698524_1600x1200.jpg.webp",
+            "assets/images/properties/Maisonette 80m², Asprovalta/290698528_1600x1200.jpg.webp",
+            "assets/images/properties/Maisonette 80m², Asprovalta/290698530_1600x1200.jpg.webp",
+            "assets/images/properties/Maisonette 80m², Asprovalta/290698533_1600x1200.jpg.webp",
+            "assets/images/properties/Maisonette 80m², Asprovalta/290698535_1600x1200.jpg.webp",
+            "assets/images/properties/Maisonette 80m², Asprovalta/290698536_1600x1200.jpg.webp",
+            "assets/images/properties/Maisonette 80m², Asprovalta/290698538_1600x1200.jpg.webp"
+        ]
+    }
 ]
