@@ -1,21 +1,24 @@
 {% extends "layout.html" %}
 
+{% block title %}
+    Group Real Estate - Αρχική σελίδα
+{% endblock %}
+
+{% block description %}
+    Εξειδικευμένο μεσιτικό γραφείο στα Νέα Βρασνά και την ευρύτερη περιοχή. Βρείτε μοναδικές ευκαιρίες σε σπίτια, διαμερίσματα, οικόπεδα και επαγγελματικούς χώρους. Επικοινωνήστε μαζί μας για άμεση εξυπηρέτηση.
+{% endblock %}
+
 {% block extra_head %}
-    {% block title %}<title>Group Real Estate - Αρχική σελίδα</title>{% endblock %}
-    {% block description %}<meta name="description" content="Εξειδικευμένο μεσιτικό γραφείο στα Νέα Βρασνά και την ευρύτερη περιοχή. Βρείτε μοναδικές ευκαιρίες σε σπίτια, διαμερίσματα, οικόπεδα και επαγγελματικούς χώρους. Επικοινωνήστε μαζί μας για άμεση εξυπηρέτηση.">{% endblock %}
     <meta name="keywords" content="μεσιτικό γραφείο, real estate, ακίνητα, πωλήσεις κατοικιών, ενοικιάσεις διαμερισμάτων, Νέα Βρασνά, Ασπροβάλτα, Νέα Κερδύλια">
     
-    <!-- Open Graph (Facebook, Viber, etc.) -->
     <meta property="og:title" content="Group Real Estate - Ευκαιρίες Ακινήτων στην Παραλία Βρασνών" />
     <meta property="og:description" content="Ανακαλύψτε το επόμενο σπίτι ή την επένδυσή σας. Εξειδικευόμαστε στην αγορά, πώληση και ενοικίαση ακινήτων με επαγγελματισμό και συνέπεια." />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://www.grouprealestate.gr/" />
     <meta property="og:image" content="https://https://www.grouprealestate.gr//static/images/logo-refined.webp" />
 
-    <!-- Canonical URL -->
     <link rel="canonical" href="https://www.grouprealestate.gr/" />
 {% endblock %}
-
 
 {% block content %}
 
@@ -170,7 +173,7 @@
                     <li><i class="bi bi-tsunami"></i> <span data-lang-key="caravan_highlight2"></span></li>
                     <li><i class="bi bi-graph-up-arrow"></i> <span data-lang-key="caravan_highlight3"></span></li>
                 </ul>
-                <a href="{{ url_for('property_single_page', property_id='plot-paralia-vrasna-200') }}" class="btn btn-primary" data-lang-key="caravan_cta"></a>
+                <a href="{{ url_for('listings_page', type='plot') }}" class="btn btn-primary" data-lang-key="caravan_cta"></a>
             </div>
         </div>
     </div>

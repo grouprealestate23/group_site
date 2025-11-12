@@ -1,6 +1,23 @@
 {% extends "layout.html" %}
 
+{% block title %}
+Group Real Estate | Ακίνητα
+{% endblock %}
+
+{% block description %}
+Δείτε όλες τις αγγελίες ακινήτων από την Group Real Estate. Ανακαλύψτε μεζονέτες, διαμερίσματα και οικόπεδα σε Νέα Βρασνά, Ασπροβάλτα και Νέα Κερδύλια. Χρησιμοποιήστε τα φίλτρα για άμεση εύρεση.
+{% endblock %}
+
 {% block extra_head %}
+    <meta name="keywords" content="αγγελίες ακινήτων, πωλήσεις κατοικιών, ενοικιάσεις σπιτιών, οικόπεδα Νέα Βρασνά, διαμερίσματα Ασπροβάλτα, μονοκατοικίες Νέα Κερδύλια">
+
+    <meta property="og:title" content="Ανακαλύψτε τα Ακίνητά μας - Group Real Estate" />
+    <meta property="og:description" content="Περιηγηθείτε στις διαθέσιμες αγγελίες μας. Χρησιμοποιήστε τα φίλτρα για να βρείτε το ακίνητο που σας ταιριάζει απόλυτα." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://www.grouprealestate.gr/listings" />
+    <meta property="og:image" content="https://www.grouprealestate.gr/static/images/logo-refined.webp" />
+
+    <link rel="canonical" href="https://www.grouprealestate.gr/listings" />
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 {% endblock %}
 
