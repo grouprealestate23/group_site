@@ -3,8 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title data-lang-key="site_title"></title>
-    
+    <title>{% block title %}Group Real Estate - Μεσιτικό Γραφείο στα Νέα Βρασνά{% endblock %}</title>
+    <meta name="description" content="{% block description %}Εξειδικευμένο μεσιτικό γραφείο στην περιοχή των Νέων Βρασνών, Ασπροβάλτας και Στρυμονικού κόλπου. Βρείτε μοναδικές ευκαιρίες σε σπίτια, διαμερίσματα και οικόπεδα.{% endblock %}">
+    <meta property="og:site_name" content="Group Real Estate" />
+    <meta property="og:locale" content="el_GR" />
     <link rel="icon" type="image/webp" href="{{ url_for('static', filename='assets/images/favicon.webp') }}">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">

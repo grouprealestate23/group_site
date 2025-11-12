@@ -1,5 +1,22 @@
 {% extends "layout.html" %}
 
+{% block extra_head %}
+    {% block title %}<title>Group Real Estate | Kerdylia Project</title>{% endblock %}
+    {% block description %}<meta name="description" content="Ανακαλύψτε το Project Kerdylia Riviera, ένα μοναδικό project με πολυτελείς μεζονέτες και διαμερίσματα στα Νέα Κερδύλια. Ζήστε το όνειρο της παραθαλάσσιας κατοικίας.">{% endblock %}
+    <meta name="keywords" content="Kerdylia Riviera, νέο project, παραθαλάσσιες κατοικίες, πολυτελείς μεζονέτες, πώληση κατοικιών Νέα Κερδύλια, Group Real Estate">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Kerdylia Riviera Project από την Group Real Estate" />
+    <meta property="og:description" content="Η ζωή δίπλα στη θάλασσα που πάντα ονειρευόσασταν. Δείτε τις διαθέσιμες μονάδες στο αποκλειστικό μας project στα Νέα Κερδύλια." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://www.grouprealestate.gr/project-kerdylia" />
+    <meta property="og:image" content="https://www.grouprealestate.gr/static/assets/images/Εικόνες για Slider/ekso1.webp" />
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://www.grouprealestate.gr/project-kerdylia" />
+{% endblock %}
+
+
 {% block content %}
 
 <section class="hero-v3">

@@ -99,9 +99,7 @@
         "main_image": "assets/images/properties/Maisonette, 93 m² , Nea Vrasna/μεζονετες.webp",
         "images": [
             "assets/images/properties/Maisonette, 93 m² , Nea Vrasna/μεζονετες.webp",
-            "assets/images/properties/Maisonette, 93 m² , Nea Vrasna/iso.webp",
             "assets/images/properties/Maisonette, 93 m² , Nea Vrasna/orofos.webp",
-            "assets/images/properties/Maisonette, 93 m² , Nea Vrasna/room.webp",
             "assets/images/properties/Maisonette, 93 m² , Nea Vrasna/room.webp",
             "assets/images/properties/Maisonette, 93 m² , Nea Vrasna/kouzina.webp",
             "assets/images/properties/Maisonette, 93 m² , Nea Vrasna/living-room.webp",
@@ -133,6 +131,7 @@
         ],
         "main_image": "assets/images/Project_kerdylia/ekso1.webp",
         "images": [
+            "assets/images/Project_kerdylia/ekso1.webp",
             "assets/images/Project_kerdylia/Taratsa.webp",
             "assets/images/Project_kerdylia/ekso2.webp",
             "assets/images/Project_kerdylia/1os_orofos.webp"
@@ -195,6 +194,7 @@
         ],
         "main_image": "assets/images/Project_kerdylia/ekso5.webp",
         "images": [
+            "assets/images/Project_kerdylia/ekso5.webp",
             "assets/images/Project_kerdylia/ekso1.webp",
             "assets/images/Project_kerdylia/ekso2.webp",
             "assets/images/Project_kerdylia/1os_orofos.webp"
