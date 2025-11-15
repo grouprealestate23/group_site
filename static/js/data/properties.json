@@ -77,6 +77,29 @@
             "assets/images/properties/monokatoikia_feggaraki.webp"
         ]
     },
+     {
+        "id": "plot-paralia-vrasna-200m²-lidl",
+        "title_key": "prop_title_plot-paralia-vrasna-200m²-lidl",
+        "description_key": "prop_desc_plot-paralia-vrasna-200m²-lidl",
+        "location": "Paralia Vrasna",
+        "location_slug": "paralia-vrasna",
+        "status": "for_sale",
+        "type": "plot",
+        "price": 25000,
+        "area": 200,
+        "bedrooms": 0,
+        "bathrooms": 0,
+        "lat": null,
+        "lon": null,
+        "features_keys": [
+            "feature_sea_view"
+        ],
+        "images": [
+            "assets/images/properties/plot-paralia-vrasna-200m²-lidl/327818015_1600x1200.webp",
+            "assets/images/properties/plot-paralia-vrasna-200m²-lidl/332984321_1600x1200.webp"
+        ],
+        "main_image": "assets/images/properties/plot-paralia-vrasna-200m²-lidl/327818015_1600x1200.webp"
+    },
     {
         "id": "the-twins",
         "lat": 40.695095867175,
@@ -199,7 +222,7 @@
             "assets/images/Project_kerdylia/ekso2.webp",
             "assets/images/Project_kerdylia/1os_orofos.webp"
         ]
-    },    
+    },
     {
         "id": "kerdylia-maisonette-k1-k5",
         "project_id": "kerdylia_riviera",
@@ -263,6 +286,94 @@
         ]
     },
     {
+        "id": "plot-nea-vrasna-150m²",
+        "title_key": "prop_title_plot-nea-vrasna-150m²",
+        "description_key": "prop_desc_plot-nea-vrasna-150m²",
+        "location": "Paralia Vrasna",
+        "location_slug": "paralia-vrasna",
+        "status": "for_sale",
+        "type": "plot",
+        "price": 27000,
+        "area": 150,
+        "bedrooms": 0,
+        "bathrooms": 0,
+        "lat": null,
+        "lon": null,
+        "features_keys": [
+            "feature_near_sea_300m"
+        ],
+        "images": [
+            "assets/images/properties/plot-paralia-vrasna-150m²/330347437_1600x1200.webp"
+        ],
+        "main_image": "assets/images/properties/plot-nea-vrasna-150m²/330347437_1600x1200.webp"
+    },
+    {
+        "id": "plot-nea-vrasna-250m²",
+        "title_key": "prop_title_plot-nea-vrasna-250m²",
+        "description_key": "prop_desc_plot-nea-vrasna-250m²",
+        "location": "Paralia Vrasna",
+        "location_slug": "paralia-vrasna",
+        "status": "for_sale",
+        "type": "plot",
+        "price": 32000,
+        "area": 250,
+        "bedrooms": 0,
+        "bathrooms": 0,
+        "lat": null,
+        "lon": null,
+        "features_keys": [
+            "feature_near_sea_500m"
+        ],
+        "images": [
+            "assets/images/properties/plot-nea-vrasna-250m²/330444843_1600x1200.webp"
+        ],
+        "main_image": "assets/images/properties/plot-nea-vrasna-250m²/330444843_1600x1200.webp"
+    },
+    {
+        "id": "plot-paralia-vrasna-215m²",
+        "title_key": "prop_title_plot-paralia-vrasna-215m²",
+        "description_key": "prop_desc_plot-paralia-vrasna-215m²",
+        "location": "Paralia Vrasna",
+        "location_slug": "paralia-vrasna",
+        "status": "for_sale",
+        "type": "plot",
+        "price": 35000,
+        "area": 215,
+        "bedrooms": 0,
+        "bathrooms": 0,
+        "lat": null,
+        "lon": null,
+        "features_keys": [
+            "feature_near_sea_300m"
+        ],
+        "images": [
+            "assets/images/properties/plot-paralia-vrasna-215m²/330347936_1600x1200.webp"
+        ],
+        "main_image": "assets/images/properties/plot-paralia-vrasna-215m²/330347936_1600x1200.webp"
+    },
+    {
+        "id": "plot-nea-vrasna-150m²-20k",
+        "title_key": "prop_title_plot-nea-vrasna-150m²-20k",
+        "description_key": "prop_desc_plot-nea-vrasna-150m²-20k",
+        "location": "Paralia Vrasna",
+        "location_slug": "paralia-vrasna",
+        "status": "for_sale",
+        "type": "plot",
+        "price": 20000,
+        "area": 150,
+        "bedrooms": 0,
+        "bathrooms": 0,
+        "lat": null,
+        "lon": null,
+        "features_keys": [
+            "feature_near_sea_500m"
+        ],
+        "images": [
+            "assets/images/properties/plot-nea-vrasna-150m²-20k/330440658_1600x1200.webp"
+        ],
+        "main_image": "assets/images/properties/plot-nea-vrasna-150m²-20k/330440658_1600x1200.webp"
+    },
+        {
         "id": "apartment-logkari-45",
         "lat": 40.759431780564,
         "lon": 23.766195661014,
